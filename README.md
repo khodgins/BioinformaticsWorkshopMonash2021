@@ -3,7 +3,7 @@ Biol525D
 
 We recommend that you browse the course content from the following webpage:
 
->> https://ubc-biol525d.github.io/
+>> https://khodgins.github.io/BioinformaticsWorkshopMonash2021
 
 
 This repository contains all the files used to generate the website.
