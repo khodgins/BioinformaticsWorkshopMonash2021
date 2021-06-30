@@ -159,37 +159,37 @@ Below are a bunch of examples for how to manipulate files. They are intended to 
 - FASTQ files have four lines per sequence. To get the first 100 lines (25 sequences):
 
 ```bash
-head -100 /home/biol525d/Topic_3/data/PmdT_147_100k_R1.fq
+head -100 ~/Topic_3/data/PmdT_147_100k_R1.fq
 ```
 
 - to copy them into a new file, use the ">" character to move information from the left hand side and print it to a file on the right hand side
 
 ```bash
-head -100 /home/biol525d/Topic_3/data/PmdT_147_100k_R1.fq > new.fq
+head -100 ~/Topic_3/data/PmdT_147_100k_R1.fq > new.fq
 ```
 
 - to pass them to another unix command, use the "\|" character, for example, to count how many characters there are:
 
 ```bash
-head -100 /home/biol525d/Topic_3/data/PmdT_147_100k_R1.fq | wc -c
+head -100 ~/Topic_3/data/PmdT_147_100k_R1.fq | wc -c
 ```
 
 - to get only the sequence names, but nothing else, use "grep", searching for the characteristic string @HWI-ST, which is at the beginning of each of the reads in these files. Note, that you shouldn't grep for just the "@" character, because it is also a quality score encoding:
 
 ```bash
-grep @HWI-ST /home/biol525d/Topic_3/data/PmdT_147_100k_R1.fq
+grep @HWI-ST ~/Topic_3/data/PmdT_147_100k_R1.fq
 ```
 
 - On the contrary, with .fasta files, it is possible to just grep for the ">" character. Sometimes fasta files will have multiple lines of sequence for a given contig, each of which is separated by a newline character. In this case, you can't count the number of contigs just by counting the number of lines in the file. A simple count can be done by grep'ing lines that start with ">":
 
 ```bash
-grep "^>" /home/biol525d/Topic_6/data/Pine_reference_rnaseq_reduced.fa | wc -l
+grep "^>" ~/Topic_3/data/Pine_reference_rnaseq_reduced.fa | wc -l
 ```
 
 - If you want to find a specific contig and get all of the sequence from a fasta file, this is a handy one-liner: 
 
 ```bash
-sed -n '/>comp10454_c2_seq1/,/>/p' /home/biol525d/Topic_6/data/Pine_reference_rnaseq_reduced.fa | grep -v ">" | tr -d "\n"
+sed -n '/>comp10454_c2_seq1/,/>/p' ~/Topic_3/data/Pine_reference_rnaseq_reduced.fa | grep -v ">" | tr -d "\n"
 ```
 
 This uses sed to find everything between the two matches, the first of which is ">comp10454_c2_seq1" and the second is the next ">" character. Note the use of tr -d "\n" to clip the new line characters and return a single contiguous sequence.
@@ -197,13 +197,13 @@ This uses sed to find everything between the two matches, the first of which is 
 - To get the last 10 lines of a file:
 
 ```bash
-tail -10 /home/biol525d/Topic_6/data/Pine_reference_rnaseq_reduced.fa
+tail -10 ~/Topic_3/data/Pine_reference_rnaseq_reduced.fa
 ```
 
 - head and tail can be used together to get a few lines of interest:
 
 ```bash
-head -1000 /home/biol525d/Topic_6/data/Pine_reference_rnaseq_reduced.fa | tail -10
+head -1000 ~/Topic_3/data/Pine_reference_rnaseq_reduced.fa | tail -10
 ```
 
 - to change all of the N's to A's, use sed:
@@ -221,49 +221,49 @@ sed 's/\"//g' file > file2
 - To print the first column of a file that has rows and columns (typical R-output):
 
 ```bash
-awk '{print $1}' /home/biol525d/Topic_6/data/cold_hot_expression.txt 
+awk '{print $1}' ~/Topic_3/data/cold_hot_expression.txt 
 ```
 
 - to sort this column and output it to a new file:
 
 ```bash
-awk '{print $1}' /home/biol525d/Topic_6/data/cold_hot_expression.txt | sort > new2.txt
+awk '{print $1}' ~/Topic_3/data/cold_hot_expression.txt | sort > new2.txt
 ```
 
 - to join the sorted column with the old dataset:
 
 ```bash
-paste /home/biol525d/Topic_6/data/cold_hot_expression.txt new2.txt > new3.txt
+paste ~/Topic_3/data/cold_hot_expression.txt new2.txt > new3.txt
 ```
 
 - to output only the lines of a file that have a number > 85 in the 12th column:
 
 ```bash
-awk '{if($12 > 85){print}}' /home/biol525d/Topic_3/data/sample_blast_results.txt > sample_blast_results_filt.txt
+awk '{if($12 > 85){print}}' ~/Topic_3/data/sample_blast_results.txt > sample_blast_results_filt.txt
 ```
 
 This is really useful for filtering BLAST tabular format results. Another nice way to sort blast results to get the best hit for each contig that you queried, sorted by bit score and e-value:
 
 ```bash
-sort -k1,1 -k12,12nr -k11,11n /home/biol525d/Topic_3/data/sample_blast_results.txt | sort -u -k1,1 --merge > sample_blast_results_sorted.txt
+sort -k1,1 -k12,12nr -k11,11n ~/Topic_3/data/sample_blast_results.txt | sort -u -k1,1 --merge > sample_blast_results_sorted.txt
 ```
 
 - to output columns 3-8:
 
 ```bash
-cut -f3-8 /home/biol525d/Topic_3/data/sample_blast_results.txt > sample_blast_results_sub.txt
+cut -f3-8 ~/Topic_3/data/sample_blast_results.txt > sample_blast_results_sub.txt
 ```
 
 - to count the number of occurrences of "N" that occur in each line of a file, from the 3rd column onwards:
 
 ```bash
-awk '{s=0; for (i=3; i <= NF; i++) {if($i == "N"){s=s+1}}}; {print s}' /home/biol525d/Topic_3/data/sample_depths.txt > file_withnumber_ofNs.txt
+awk '{s=0; for (i=3; i <= NF; i++) {if($i == "N"){s=s+1}}}; {print s}' ~/Topic_3/data/sample_depths.txt > file_withnumber_ofNs.txt
 ```
 
 - to get the mean from all of the non-N entries in the same file, excluding the N's:
 
 ```bash
-awk 'BEGIN {FS=OFS=" "}{sum=0; n=0; for(i=3;i<=NF;i++){if ($i != "N"){sum+=$i; ++n}} print sum/n}' /home/biol525d/Topic_3/data/sample_depths.txt > sample_depths_rowmeans.txt
+awk 'BEGIN {FS=OFS=" "}{sum=0; n=0; for(i=3;i<=NF;i++){if ($i != "N"){sum+=$i; ++n}} print sum/n}' ~/Topic_3/data/sample_depths.txt > sample_depths_rowmeans.txt
 ```
 
 NOTE: these operations using awk are MUCH faster than R, especially on large files, and they are easy to integrate into shell scripts.
