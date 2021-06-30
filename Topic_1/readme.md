@@ -34,7 +34,7 @@ Terminal/shell is available from the bottom tools bar:
 
 RStudio and firefox is also installed
 
-Monash has a number of computational resources available for research. Information about these resources can be found [here]{https://www.monash.edu/researchinfrastructure/eresearch/capabilities/compute)
+Monash has a number of computational resources available for research. Information about these resources can be found [here](https://www.monash.edu/researchinfrastructure/eresearch/capabilities/compute)
 
 
 
