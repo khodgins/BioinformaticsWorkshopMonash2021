@@ -42,7 +42,9 @@ tar -xf prinseq-lite-0.20.4.tar.gz
 However, this is already done for you!
 
 
-move into your ~/Topic_3/data folder and execute the following commands:
+The next step is to assess the quality of the sequence data. We will first look at the RNAseq sample (PmdT_147). 
+
+Move into your ~/Topic_3/data folder and execute the following commands:
 
 ```bash
 perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/PmdT_147_100k_R1.fq -fastq2 ~/Topic_3/data/PmdT_147_100k_R2.fq -graph_data pmdt_147_100k_graph.txt 
