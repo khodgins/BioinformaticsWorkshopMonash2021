@@ -59,7 +59,7 @@ scp <username@ip.address>:~/Topic_3/*graph.txt <path on your computer where you 
 For example:
 scp -rp trainee1@sbs-01.erc.monash.edu:~/Topic_3/*graph.txt ~/Dropbox/Documents/bioinformatics_workshop/bioinformatics_workshop_2019_Monash/Topic_3/
 
-and upload it to [http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi]{/http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi} to view/download your graphs
+and upload it to >>http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi to view/download your graphs
 
 For a description of the various plot types, see:
 
