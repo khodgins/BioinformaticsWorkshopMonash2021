@@ -27,15 +27,16 @@ Loading this URL in any browser will display the main/login page:
 
 Login using your assigned username and password, which we will provide
 
-Upon login to the URL/site above, the assigned instance is shown:
+Upon login to the URL/site above, the assigned instance is shown. 
 ![](Sign_in2.png){:width="100%"}
 
-Click on the Reconnect link to then connect to the instance’s remote desktop (via HTML5 viewer). The instance’s desktop environment is then displayed:
+Click on the Connect link to then connect to the instance’s remote desktop (via HTML5 viewer). The instance’s desktop environment is then displayed.
 
-![](Sign_in3.png){:width="100%"}
 Training modules (e.g qc, cli) contain datasets required for each module.
 
 Terminal/shell is available from the bottom tools bar:
+
+![](Sign_in3.png){:width="100%"}
 
 RStudio and firefox is also installed
 
