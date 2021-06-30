@@ -8,11 +8,12 @@ topictitle: "Preprocessing"
 ### Recorded lecture
 <iframe src="https://monash.au.panopto.com/Panopto/Pages/Embed.aspx?id=1ed65bb6-c112-4fb2-afb9-ac8201899f60&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
-### Accompanying material
-
+### Lecture slides
 * [Slides](./quality_trimmingMonash.pdf)
-* Background reading: [Data preprocessing](./background_reading/Data_preprocessing.pdf), by Robert Schmieder.
-* Background reading: Del Fabbro C, Scalabrin S, Morgante M, Giorgi FM (2013) [An Extensive Evaluation of Read Trimming Effects on Illumina NGS Data Analysis](./background_reading/journal.pone.0085024.PDF). PLoS ONE 8(12): e85024. doi:10.1371/journal.pone.0085024
+
+### Background reading
+* [Data preprocessing](./background_reading/Data_preprocessing.pdf), by Robert Schmieder.
+* Del Fabbro C, Scalabrin S, Morgante M, Giorgi FM (2013) [An Extensive Evaluation of Read Trimming Effects on Illumina NGS Data Analysis](./background_reading/journal.pone.0085024.PDF). PLoS ONE 8(12): e85024. doi:10.1371/journal.pone.0085024
 
 # Code break questions 
 
