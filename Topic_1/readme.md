@@ -1,5 +1,5 @@
 ---
-title: "Topic 1: Logging into the VMs."
+title: "Topic 1: Logging into the VM"
 permalink: /Topic_1/
 topickey: 1
 topictitle: Servers
@@ -13,21 +13,26 @@ Accompanying material:
 
 How to login to training VM 
 
-Open the login URL/site
+From within Monash network access this URL:
 
-Training accounts usernames were provided.
+https://sbs-broker.erc.monash.edu/
 
-Password: 
+Note that off campus you can login via a [vnp](https://www.monash.edu/esolutions/network/vpn)
+
+Training accounts usernames and passwords will be provided.
 
 Loading this URL in any browser will display the main/login page: 
+
+![](Sign_in.png){:width="100%"}
 
 Login using your assigned username and password, which we will provide
 
 Upon login to the URL/site above, the assigned instance is shown:
-
+![](Sign_in2.png){:width="100%"}
 
 Click on the Reconnect link to then connect to the instance’s remote desktop (via HTML5 viewer). The instance’s desktop environment is then displayed:
 
+![](Sign_in3.png){:width="100%"}
 Training modules (e.g qc, cli) contain datasets required for each module.
 
 Terminal/shell is available from the bottom tools bar:
