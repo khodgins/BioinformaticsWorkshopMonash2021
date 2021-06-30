@@ -61,11 +61,6 @@ scp -rp trainee1@sbs-01.erc.monash.edu:~/Topic_3/*graph.txt ~/Dropbox/Documents/
 
 and upload it to http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi to view/download your graphs
 
-
-```bash
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-graphs.pl -i pmdt_147_100k_graph.txt -o pmdt_147_100k_out_graphs.txt -html_all 
-```
-
 For a description of the various plot types, see:
 
 http://prinseq.sourceforge.net/manual.html#STANDALONE
