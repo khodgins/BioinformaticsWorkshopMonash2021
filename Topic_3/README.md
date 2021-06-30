@@ -59,11 +59,9 @@ scp <username@ip.address>:~/Topic_3/*graph.txt <path on your computer where you 
 For example:
 scp -rp trainee1@sbs-01.erc.monash.edu:~/Topic_3/*graph.txt ~/Dropbox/Documents/bioinformatics_workshop/bioinformatics_workshop_2019_Monash/Topic_3/
 
-and upload it to [here](http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi) to view/download your graphs
+and upload it to [here](http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi) to view/download your graphs (click Get report)
 
-For a description of the various plot types, see:
-
-http://prinseq.sourceforge.net/manual.html#STANDALONE
+For a description of the various plot types [here](http://prinseq.sourceforge.net/manual.html#STANDALONE)
 
 Now rerun the above commands on the fastq files named GBS12_brds_Pi_197A2_100k_R#.fastq, which are reads created using the GBS protocol with an enzyme called PST1.
 
