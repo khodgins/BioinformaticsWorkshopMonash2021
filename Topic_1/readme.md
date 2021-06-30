@@ -5,11 +5,14 @@ topickey: 1
 topictitle: Servers
 ---
 
-
-Accompanying material:
----------------------
-
+### Lecture slides
 * [Slides](./Topic 1.pdf)
+
+### Background reading
+[RADseq Andrews](./Andrews_et_al.pdf)
+[Linked read sequencing Meier](./Meier_et_al.pdf)
+[RADseq Peterson](./Peterson_et_al.pdf)
+[Sequencing review Shendure](./Shendure_Waterston_2017.pdf)
 
 How to login to training VM 
 
