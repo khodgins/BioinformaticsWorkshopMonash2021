@@ -101,7 +101,7 @@ Or removing N's from the left and right hand side of the sequences:
 -trim_ns_left 3 (Trim poly-N tail with a minimum length of 3 at the 5'-end)
 -trim_ns_right 3 (Trim poly-N tail with a minimum length of 3 at the 3'-end)
 
-Question 2) Try different filtering options for the GBS data  (see http://prinseq.sourceforge.net/manual.html for options) and plot QC graphs. Discuss in a group of four which options you would choose to implement if this was your data.
+Question 2) Try different filtering options for the GBS data  (see the [manual](http://prinseq.sourceforge.net/manual.html) for options) and plot QC graphs. Discuss in a group of four which options you would choose to implement if this was your data.
 
 
 Low complexity sequences can be filtered using:
@@ -130,14 +130,6 @@ From the manual:
 NOTE: prinseq has an order of operations, which it tells you when you run it with the -h option. Be mindful of this, because it will calculate the mean quality score differently if other operations are run first.
 
 There is no best option for trimming/filtering. The choices you make should reflect the application and the state of your data. There is such a thing as too much filtering/trimming. 
-
-
-
-
-
-
-
-
 
 
 
