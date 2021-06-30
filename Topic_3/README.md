@@ -2,7 +2,7 @@
 title: Topic 3
 permalink: /Topic_3/
 topickey: 3
-topictitle: "Preprocess Seq. Data"
+topictitle: "Preprocessing"
 ---
 
 ### Recorded lecture
@@ -10,70 +10,58 @@ topictitle: "Preprocess Seq. Data"
 
 ### Accompanying material
 
-* [Slides](./quality_trimming2020.pdf)
+* [Slides](./quality_trimming_Monash_2019.pdf)
 * Background reading: [Data preprocessing](./background_reading/Data_preprocessing.pdf), by Robert Schmieder.
 * Background reading: Del Fabbro C, Scalabrin S, Morgante M, Giorgi FM (2013) [An Extensive Evaluation of Read Trimming Effects on Illumina NGS Data Analysis](./background_reading/journal.pone.0085024.PDF). PLoS ONE 8(12): e85024. doi:10.1371/journal.pone.0085024
 
-
-
 # Code break questions 
 
-1) How many sequences so you have in the fasta file /home/biol525d/Topic_6/data/Pine_reference_rnaseq_reduced.fa?
+1) How many sequences so you have in the fasta file ~/Topic_3/data/Pine_reference_rnaseq_reduced.fa?
 
 Hint: wc –l <file name> provides the number of lines in a file
 
-2) How many sequences do you have in the fastq file /home/biol525d/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq?
+2) How many sequences do you have in the fastq file ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq?
 
 Hint: for grep ^ indicates the start of the line and $ indicates the end of the line (e.g. grep ^H*?$ <filename> would find all the lines starting with H and ending in ?)
 
-3) How many sequences contain a base with a Phred score of 2 /home/biol525d/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq?
-
-To practice unix-based command line, run through some of the examples after the quality trimming section (at the bottom of this page) to learn how to navigate through the file system and do basic file manipulation. There are several handy one liners so I recommend going through it.
+3) How many sequences contain a base with a Phred score of 2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq?
 
 # Topic 3: Preprocessing Sequence Data
+
+To practice unix-based command line, run through some of the examples after the quality trimming section to learn how to navigate through the file system and do basic file manipulation.
 
 1. Run prinseq-lite.pl on the unfiltered data first to examine the quality metrics:
 
 (if you need to find which directory you are in, type "pwd" at command prompt)
 
 The first step would be to install the program prinseq.
-Move into the /home/biol525d/Topic_3/scripts folder. Unpack prinseq-lite-0.20.4.tar.gz by executing the following command:
+Move into the ~/Topic_3/scripts folder. Unpack prinseq-lite-0.20.4.tar.gz by executing the following command:
 
 tar -xf prinseq-lite-0.20.4.tar.gz
 
 However, this is already done for you!
 
-This first dataset is from an RNAseq study. To create QC graphs for the raw data. To keep things organized make a directory for the output for Topic 3 in your home directory
+
+move into your ~/Topic_3/data folder and execute the following commands:
 
 ```bash
-mkdir ~/Topic_3
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/PmdT_147_100k_R1.fq -fastq2 ~/Topic_3/data/PmdT_147_100k_R2.fq -graph_data pmdt_147_100k_graph.txt 
 ```
 
-copy the sequence data into your folder
-
-```bash
-cp /home/biol525d/Topic_3/data/*fq ~/Topic_3/ 
-cp /home/biol525d/Topic_3/data/*fastq ~/Topic_3/ 
-```
-
-move into your ~/Topic_3/ folder and execute the following commands:
-
-```bash
-perl /home/biol525d/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/PmdT_147_100k_R1.fq -fastq2 ~/Topic_3/PmdT_147_100k_R2.fq -graph_data pmdt_147_100k_graph.txt 
-```
-
-download your graph file to your computer using Cyberduck or the following command (note that you should execute this command in a terminal window that is not connected to the server and use your own login information for the username and ip address)
+Download your graph file to your computer. You can do so by using the following command (note that you should execute this command in a terminal window that is not connected to the server and use your own login information for the username and ip address)
 
 ```bash
 scp <username@ip.address>:~/Topic_3/*graph.txt <path on your computer where you want the file>
 ```
 
-and upload it to http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi to view/download your graphs (click on "Get Report" and select your graph file to upload)
+For example:
+scp -rp trainee1@sbs-01.erc.monash.edu:~/Topic_3/*graph.txt ~/Dropbox/Documents/bioinformatics_workshop/bioinformatics_workshop_2019_Monash/Topic_3/
 
-note that you can execute the following line to create these same graphs on the server but you need to install a number of perl modules and the download the files to view anyway:
+and upload it to http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi to view/download your graphs
+
 
 ```bash
-perl /home/biol525d/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-graphs.pl -i pmdt_147_100k_graph.txt -o pmdt_147_100k_out_graphs.txt -html_all 
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-graphs.pl -i pmdt_147_100k_graph.txt -o pmdt_147_100k_out_graphs.txt -html_all 
 ```
 
 For a description of the various plot types, see:
@@ -83,7 +71,7 @@ http://prinseq.sourceforge.net/manual.html#STANDALONE
 Now rerun the above commands on the fastq files named GBS12_brds_Pi_197A2_100k_R#.fastq, which are reads created using the GBS protocol with an enzyme called PST1.
 
 ```bash
-perl /home/biol525d/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/GBS12_brds_Pi_197A2_100k_R1.fastq -fastq2 ~/Topic_3/GBS12_brds_Pi_197A2_100k_R2.fastq -graph_data GBS12_brds_Pi_197A2_100k_graph.txt 
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq -fastq2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R2.fastq -graph_data GBS12_brds_Pi_197A2_100k_graph.txt 
 ```
 
 Question 1) Compare the two .html files. What kinds of differences do you see in the files? Why do you think these differences are found (hint: think about the types of data you are analyzing)? 
@@ -94,17 +82,19 @@ Question 1) Compare the two .html files. What kinds of differences do you see in
 Trim off bases from either end with less than a quality score of 10 (-trim_qual_left and -trim_qual_right), and filter any sequences that have less than 70 base pairs (-min_len 70):
 
 ```bash
-perl /home/biol525d/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/GBS12_brds_Pi_197A2_100k_R1.fastq -fastq2 ~/Topic_3/GBS12_brds_Pi_197A2_100k_R2.fastq -log log1 -out_good GBS_filter1 -min_len 70 -trim_qual_left 10 -trim_qual_right 10 
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq -fastq2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R2.fastq -log log1 -out_good GBS_filter1 -min_len 70 -trim_qual_left 10 -trim_qual_right 10 
 ```
 
 Note that you can view the log file (log1) to see the command executed and the output (including the default parameters run)
+
+This level of filtering by minimum length is probably overkill for most applications, but it gives you a chance to see how prinseq is changing the data. 
 
 You should see 2 output files called GBS_filter1_#.fastq and two more that have a "_singletons" suffix. These "singleton" files are those that were left unpaired after the corresponding sequence was filtered from the alternate read direction file.
 
 Try running various combinations of these commands, regraph the results, and see how the statistics have been affected. 
 
 ```bash
-perl /home/biol525d/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq GBS_filter1_1.fastq -fastq2 GBS_filter1_2.fastq -graph_data GBS_filter1.txt 
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq GBS_filter1_1.fastq -fastq2 GBS_filter1_2.fastq -graph_data GBS_filter1.txt 
 ```
 
 Experiment with other filters, such as filtering sequences with a mean quality score below some value (here, Q15):
@@ -145,6 +135,14 @@ From the manual:
 NOTE: prinseq has an order of operations, which it tells you when you run it with the -h option. Be mindful of this, because it will calculate the mean quality score differently if other operations are run first.
 
 There is no best option for trimming/filtering. The choices you make should reflect the application and the state of your data. There is such a thing as too much filtering/trimming. 
+
+
+
+
+
+
+
+
 
 
 
