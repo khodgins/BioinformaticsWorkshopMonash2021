@@ -1,10 +1,10 @@
 # configuration
 # fill in the course details
 
-courseName: "UBC Biol525D -- Fall 2020"
+courseName: "Introduction to Bioinformatics -- 2021"
 
 # small title that is at the top of every page
-subtitle: "Topics in Systematics and Evolution: Bioinformatics for Evolutionary Biology"
+subtitle: "Bioinformatics for HDR students in the School of Biological Sciences, Monash University"
 
 # baseurl: /
 
