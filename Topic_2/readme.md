@@ -12,12 +12,23 @@ understanding problems.
 
 ### Accompanying material
 
-* [Slides](./Topic 2.pdf)
+* [Slides](./Topic_2.pdf)
 
 ### Tutorial
 
-Complete the Software Carpentry Tutorial first. Following that read the material below and complete Exercise 1 and Exercise 2.
+Complete the Software Carpentry Tutorial first. You can find the files and directories in ~/shell-lesson-data  
+
+Please cover: 
+* the shell 
+* navigating files and directories
+* working with files and directories
+* pipes and filters
+* loops
+* shell scripts
+
 * [Software Carpentry Tutorial](http://swcarpentry.github.io/shell-novice/)
+
+Now read the material below and complete Exercise 1 and Exercise 2.
 
 ### Getting help
 
