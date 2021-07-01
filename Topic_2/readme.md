@@ -13,17 +13,15 @@ understanding problems.
 ### Accompanying material
 
 * [Slides](./Topic 2.pdf)
-* [Software Carpentry Tutorial](http://swcarpentry.github.io/shell-novice/)
 
-### Other Tutorials
-Here are some good tutorials if you're interested in learning a programming language
-* [Python](https://www.codecademy.com/learn/python)
-* [Perl](http://www.perl.com/pub/2000/10/begperl1.html)
-* [R](http://swirlstats.com/)
+### Tutorial
+
+Complete the Software Carpentry Tutorial first. Following that read the material below and complete Exercise 1 and Exercise 2.
+* [Software Carpentry Tutorial](http://swcarpentry.github.io/shell-novice/)
 
 ### Getting help
 
-most programs come with a manual page, explaining all options. You can get help about individual command with the following:
+Most programs come with a manual page, explaining all options. You can get help about individual command with the following:
 
 1. for command structure, variables, and shell rules: `man bash`
 1. bash builtins: `help`, and `help <cmd>`. help on for loops: `help for`, help on conditionals `help if`, help on change directory `help cd`, etc.
@@ -223,6 +221,12 @@ run the command `byobu-quiet`.  This can be undone with `byobu-quiet
    > exit
 ```
 </details>
+
+### Other Tutorials
+Here are some good tutorials if you're interested in learning a programming language
+* [Python](https://www.codecademy.com/learn/python)
+* [Perl](http://www.perl.com/pub/2000/10/begperl1.html)
+* [R](http://swirlstats.com/)
 
 
 ### Daily Assignments
