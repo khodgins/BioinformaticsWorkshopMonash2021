@@ -16,7 +16,7 @@ understanding problems.
 
 ### Tutorial
 
-Complete the Software Carpentry Tutorial first. You can find the files and directories in ~/shell-lesson-data  
+Complete the [Software Carpentry Tutorial](http://swcarpentry.github.io/shell-novice/) first. You can find the files and directories in ~/shell-lesson-data on your VM 
 
 Please cover: 
 * the shell 
@@ -26,9 +26,7 @@ Please cover:
 * loops
 * shell scripts
 
-* [Software Carpentry Tutorial](http://swcarpentry.github.io/shell-novice/)
-
-Now read the material below and complete Exercise 1 and Exercise 2.
+Now read the reference material below and complete Exercise 1 and Exercise 2.
 
 ### Getting help
 
@@ -240,7 +238,7 @@ Here are some good tutorials if you're interested in learning a programming lang
 * [R](http://swirlstats.com/)
 
 
-### Daily Assignments
+### Daily Questions
 1. What is one task you'd rather use an R script instead of a shell script? Why? What is one task you'd rather use a shell script, instead of an R script? Why?
 2. Why is piping directly between programs faster than writing each consecutive output to the disk? Explain using information about computer hardware.
 
