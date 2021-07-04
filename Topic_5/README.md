@@ -135,8 +135,6 @@ cp -r ~/Topic_5/data/sa_assembly31 ~/Topic_5/out/
 -fastq is the type of sequence format
 -separate tells the programs that the paired reads are in two separate files (one with read 1 (frag_1) and one with read 2 (frag_2))
 
-Run the above command.
-
 A Roadmap file is produced. This file is used as input for the next stage of velvet. For each k-mer observed in the set of reads, the hash table records the ID of the first read encountered containing that k-mer and the position of its occurrence within that read. This file rewrites each read as a set of original k-mers combined with overlaps with previously hashed reads. For more information see:
 
 http://homolog.us/blogs/blog/2011/12/06/format-of-velvet-roadmap-file/
