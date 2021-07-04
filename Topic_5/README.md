@@ -223,11 +223,11 @@ Question 4) Typically, the longer the k-mer, the better the assembly, until you 
 If you want to modify other parameters you can simply run velvetg without rerunning velveth. 
 
 Some potential parameters to modify include (see the manual for details):
--min_contig_lgth
--cov_cutoff
--ins_length 
--ins_length_sd 
--exp_cov (note that for this parameter you can include an estimated expected k-mer coverage or ask velvet to estimate it from the data by typing -exp_cov auto)
+* min_contig_lgth
+* cov_cutoff
+* ins_length 
+* ins_length_sd 
+* exp_cov (note that for this parameter you can include an estimated expected k-mer coverage or ask velvet to estimate it from the data by typing -exp_cov auto)
 
 Be sure to try -exp_cov auto. For a more detailed explanation of this parameter see:
 
