@@ -346,16 +346,23 @@ Another popular long read assembler is [Canu](https://canu.readthedocs.io/en/lat
 ###########
 
 How to download and install Minimap2, Miniasm & Racon - This was already done for you but incase you need to do it in the future, here is what was done:
+
 git clone https://github.com/lh3/minimap2 && (cd minimap2 && sudo make)
+
 git clone https://github.com/lh3/miniasm  && (cd miniasm  && sudo make)
 
 (mv into /user/local/bin/)
 
 
 git clone --recursive https://github.com/lbcb-sci/racon.git racon
+
 cd racon
+
 mkdir build
+
 cd build
+
 cmake -DCMAKE_BUILD_TYPE=Release ..
+
 make
 
