@@ -20,7 +20,7 @@ Background reading:
 * [Velvet Manual 1.1](./background_reading/Manual.pdf). Daniel Zerbino, 2008.
 * [Stacks paper](./background_reading/Stacks.pdf). Catchen, Amores, Hohenlohe, Cresko, Postlethwait. G3 Genes Genomes Genetics, 2011.
 * [Minimap2 paper](https://academic.oup.com/bioinformatics/article/34/18/3094/4994778)
-* [Miniasm paper](https://academic.oup.com/bioinformatics/article/32/14/2103/1742895
+* [Miniasm paper](https://academic.oup.com/bioinformatics/article/32/14/2103/1742895)
 * [Racon paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5411768/)
 * [A comparison of assemblers for long read assembly in prokayotes](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6966772/) 
 
