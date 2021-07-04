@@ -5,7 +5,7 @@ topickey: 3
 topictitle: "Preprocessing"
 ---
 
-### Recorded lecture
+### Recorded lecture 2020
 <iframe src="https://monash.au.panopto.com/Panopto/Pages/Embed.aspx?id=1ed65bb6-c112-4fb2-afb9-ac8201899f60&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
 ### Lecture slides
@@ -27,7 +27,7 @@ Hint: for grep ^ indicates the start of the line and $ indicates the end of the 
 
 3) How many sequences contain a base with a Phred score of 2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq?
 
-# Topic 3: Preprocessing Sequence Data
+# Topic 3: Preprocessing Sequence Short Read Data
 
 To practice unix-based command line, run through some of the examples after the quality trimming section to learn how to navigate through the file system and do basic file manipulation.
 
@@ -35,32 +35,25 @@ To practice unix-based command line, run through some of the examples after the 
 
 (if you need to find which directory you are in, type "pwd" at command prompt)
 
-The first step would be to install the program prinseq.
+The first step would be to install the program prinseq. However, this is already done for you! However, I have provided the steps to do this below.
+	
 Move into the ~/Topic_3/scripts folder. Unpack prinseq-lite-0.20.4.tar.gz by executing the following command:
 
 tar -xf prinseq-lite-0.20.4.tar.gz
 
-However, this is already done for you!
-
 
 The next step is to assess the quality of the sequence data. We will first look at the RNAseq sample (PmdT_147). 
 
-Move into your ~/Topic_3/data folder and execute the following commands:
+Move into your ~/Topic_3/data folder, make an out folder and execute the following commands:
 
 ```bash
+cd  ~/Topic_3/data
+mkdir out
+cd out
 perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/PmdT_147_100k_R1.fq -fastq2 ~/Topic_3/data/PmdT_147_100k_R2.fq -graph_data pmdt_147_100k_graph.txt 
 ```
 
-Download your graph file to your computer. You can do so by using the following command (note that you should execute this command in a terminal window that is not connected to the server and use your own login information for the username and ip address)
-
-```bash
-scp <username@ip.address>:~/Topic_3/*graph.txt <path on your computer where you want the file>
-```
-
-For example:
-scp -rp trainee1@sbs-01.erc.monash.edu:~/Topic_3/*graph.txt ~/Dropbox/Documents/bioinformatics_workshop/bioinformatics_workshop_2019_Monash/Topic_3/
-
-and upload it to [here](http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi) to view/download your graphs (click Get report)
+Upload the graph file (pmdt_147_100k_graph.txt) to [here](http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi) to view/download your graphs (click Get report)
 
 For a description of the various plot types [here](http://prinseq.sourceforge.net/manual.html#STANDALONE)
 
