@@ -81,7 +81,7 @@ Read size (each read): 101 bp
 
 Insert length (sd): 180 bp (+/-20 bp) 
 
-### Question 1) Given the above information, what is the average expected coverage?
+Question 1) Given the above information, what is the average expected coverage?
 
 The data is located in ~/Topic_5/data/illumina/. One file contains the forward read (frag_1.fastq.gz) and the other file contains the reverse read (frag_2.fastq.gz). Each read has a match from the same fragment in the other file and is in the same order in the matching file.
 
@@ -155,7 +155,7 @@ velvetg sa_assembly21
 
 Run the above command.
 
-Now contigs.fa appears in your output directory (sa_assembly21). This file contains your assembled genome. A log file, with information on your input parameters as well as some basic metrics of your assembly, and a stats.txt file with information on each node is present also appear. Note that node lengths are given in k-mers (see below). 
+Now contigs.fa appears in your output directory (sa_assembly21). This file contains your assembled genome. A log file, with information on your input parameters as well as some basic metrics of your assembly, and a stats.txt file with information on each node is present also appear. Note that node lengths are given in k-mers units (see below). 
 
 Step 4. Assess the assembly quality
 
@@ -163,9 +163,10 @@ There are several basic metrics to quantify the quality of a genome assembly. N5
 
 To assess the assembly quality use the web-based version of [Quast](http://cab.cc.spbu.ru/quast/). Simply drop you genome assembly into the box and click evaluate. 
 
-### Question 2) Can you think of other ways to assess assembly quality? What might be the trouble with only focusing on maximizing N50 or N90? 
+Question 2) Can you think of other ways to assess assembly quality? What might be the trouble with only focusing on maximizing N50 or N90? 
 
-### Question 3) Quantify the assembly metrics for your first assembly that you ran without any options. Pick a couple sets of parameters to run (be sure to try exp_cov=auto). Compare the resulting assemblies with one another and discuss which ones seemed to have improved the assembly and why that might be. Be prepared to share your findings with the class. 
+Question 3) Quantify the assembly metrics for your first assembly that you ran without any options. Pick a couple sets of parameters to run (be sure to try exp_cov=auto). Compare the resulting assemblies with one another and discuss which ones seemed to have improved the assembly and why that might be. Be prepared to share your findings with the class. 
+
 
 Be careful not to use all your hard disk space or RAM. Velvet is relatively fast, but a memory hog. When you are finished the tutorial, you may want to remove files produced by Velvet from your drive to make space. 
 
