@@ -17,8 +17,8 @@ Slides: [De novo Assembly](./Assembly2021.pdf)
 Background reading: 
 * Comparison of the two major classes of assembly algorithms: overlap-layout-consensus and de-bruijn-graph [Paper](./background_reading/Briefings in Functional Genomics-2011-Li-bfgp-elr035.pdf). Briefings in Functional Genetics 2011.
 * The impact of third generation genomic technologies on plant genome assembly [Paper](./Jiao.pdf). Jiao & Schneeberger. Curr. Op. Plant Biol. 2017.
-* [Velvet Manual 1.1](./background_reading/Manual.pdf). Daniel Zerbino, 2008.
-* [Stacks paper](./background_reading/Stacks.pdf). Catchen, Amores, Hohenlohe, Cresko, Postlethwait. G3 Genes Genomes Genetics, 2011.
+* [Velvet Manual 1.1](./background_reading/Manual.pdf)
+* [Stacks paper](./background_reading/Stacks.pdf)
 * [Minimap2 paper](https://academic.oup.com/bioinformatics/article/34/18/3094/4994778)
 * [Miniasm paper](https://academic.oup.com/bioinformatics/article/32/14/2103/1742895)
 * [Racon paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5411768/)
