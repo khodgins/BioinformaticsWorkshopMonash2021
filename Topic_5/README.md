@@ -165,7 +165,7 @@ To assess the assembly quality use the web-based version of [Quast](http://cab.c
 
 Question 2) Can you think of other ways to assess assembly quality? What might be the trouble with only focusing on maximizing N50 or N90? 
 
-Question 3) Quantify the assembly metrics for your first assembly that you ran without any options. Pick a couple sets of parameters to run (be sure to try exp_cov=auto). Compare the resulting assemblies with one another and discuss which ones seemed to have improved the assembly and why that might be. Be prepared to share your findings with the class. 
+Question 3) Quantify the assembly metrics for your first assembly that you ran without any options. Pick a couple sets of parameters to run (be sure to try exp_cov auto). Compare the resulting assemblies with one another and discuss which ones seemed to have improved the assembly and why that might be. Be prepared to share your findings with the class. 
 
 
 Be careful not to use all your hard disk space or RAM. Velvet is relatively fast, but a memory hog. When you are finished the tutorial, you may want to remove files produced by Velvet from your drive to make space. 
