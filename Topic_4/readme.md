@@ -124,6 +124,9 @@ do
   echo $file
   head $file
 done
+
+#remove the file with the list of files
+rm file.txt
 ```
 The `cat file.txt` takes each line of the file file.txt. Each line then becomes the variable "$file" for each iteration of the loop. The file name will be printed (echo $file) and then the first 10 lines will be printed to the screen (head $file).
 
