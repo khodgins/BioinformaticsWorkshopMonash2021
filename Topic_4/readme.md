@@ -84,7 +84,7 @@ Lets examine the sam file. It contains all the information on the reads from the
 1. How are reads ordered in the sam file (hint: compare the sam to the original fastq)? 
 2. What does the 6th column represent? What would the string "1S93M6S" mean?
 3. What are some possible reasons why mapping quality could be low for a particular read?
-4. What percent of your reads mapped to the genome? Hint: <span>Samtools</span>{: .spoiler}
+4. What percent of your reads mapped to the genome? Hint: <span>samtools flagstat</span>{: .spoiler}
 
 ```bash
 
@@ -109,21 +109,44 @@ samtools tview bam/ANN1133.sort.bam  --reference ref/HanXRQr1.0-20151230.1mb.fa
 
 We have 10 samples, so we don't want to have to type these commands out 10 times. Write a bash script to produced a sorted bam file for each sample.
 
+Before you continue be sure that you have reviewed the [loops](http://swcarpentry.github.io/shell-novice/05-loop/index.html) and [shell scripts](http://swcarpentry.github.io/shell-novice/06-script/index.html) tutorial from Software Carpentry that we went over on the first day. Remember that they use files found in ~/shell-lesson-data.
+
+After you complete the loop lesson try this extension. Create a list of the files in the creature directory and save it to a file.
+```bash
+cd ~/shell-lesson-data/creatures
+ls * >> file.txt
+cat file.txt
+```
+Now create a for loop that will take the file list as input, print the file name and then the first 10 lines of the file to the screen.
+```bash
+for file in `cat file.txt`
+do
+  echo $file
+  head $file
+done
+```
+The `cat file.txt` takes each line of the file file.txt. Each line then becomes the variable "$file" for each iteration of the loop. The file name will be printed (echo $file) and then the first 10 lines will be printed to the screen (head $file).
+
 A bash script is a plain text file (i.e. not rich text, nor a word doc) which contains bash commands. You can create the file on your computer and copy it over, or you can edit it directly from the server with one of the installed editors (this is covered in [topic 2, Editing](../Topic_2/#editing). The name of the file is up to you, but bash scripts are given the `.sh` extension by convention:
 
 HINTS:
-  * Use variables for directory paths "bwa=/mnt/bin/bwa-0.7.17/bwa"
-  * Use a loop.
+  * Write out the list of commands that you would need to align one file. What would need to change in the command to align the second file or the third (what part of the file name changes versus stays the same)?
+  * You will need to use a loop 
+  * Consider using variables for directory paths e.g., "ref=~/Topic_4/ref/"
   {: .spoiler}
 
 MORE HINTS:
-  * for/while loops can receive input from stdin (or a file):
+  * Can you make a file that contains a list of all the prefixes to the fastq files (this is the part of the name that will change from file to file e.g., ANN1133). You will need to use "ls" "grep" and "sed" and redirect the output to a file (e.g., filelist.txt)
+  * Now try and take that file with the list of prefixes (e.g., filelist.txt) and print the first lines of each fastq file to the screen
 
-        while read fname;
-	  do echo processing "$fname";
-	done < list_of_things.txt
+        for file in fname `cat filelist.txt`;
+	do 
+	  head -n1 ~/Topic_4/fastq/$fname.R1.fastq 
+	done 
+	
+
   {: .spoiler}
-
+  
   * You can do pathname manipulation with `basename` and `dirname` (see manual pages):
 
     ```
@@ -142,32 +165,35 @@ MORE HINTS:
 </summary>
 ```bash
   #First set up variable names
-  bam=~/bam
-  fastq=~/fastq
-  ref_file=~/ref/HanXRQr1.0-20151230.1mb.fa
-
-  #Then get a list of sample names, without suffixes
-  ls $fastq | grep R1.fastq.gz | sed s/.R1.fastq.gz//g > $bam/samplelist.txt
 
   #Then loop through the samples
-  while read name
+  bam=~/Topic_4/bam
+  fastq=~/Topic_4/fastq
+  ref_file=~/Topic_4/ref/HanXRQr1.0-20151230.1mb.fa
+
+  #Then get a list of sample names, without suffixes and place it in the bam folder
+  ls $fastq | grep R1.fastq | sed s/.R1.fastq//g > $bam/samplelist.txt
+
+  #Then loop through the samples
+  for name in `cat $bam/samplelist.txt`
   do
     bwa mem \
     -R "@RG\tID:$name\tSM:$name\tPL:ILLUMINA" \
     $ref_file \
-    $fastq/$name.R1.fastq.gz \
-    $fastq/$name.R2.fastq.gz \
+    $fastq/$name.R1.fastq \
+    $fastq/$name.R2.fastq \
     -t 1 > $bam/$name.sam;
 
     samtools view -bh $bam/$name.sam |\
     samtools sort > $bam/$name.sort.bam;
     samtools index $bam/$name.sort.bam
-  done < $bam/samplelist.txt
+  done 
+
 ```
 </details>
 
 After your final bam files are created, and you've checked that they look good, you should remove intermediate files to save space. You can build file removal into your bash scripts, but it is often helpful to only add that in once the script works. It's hard to troubleshoot a failed script if it deletes everything as it goes.
-### By topic 7, you should have created cleaned bam files for all samples.
+### By tomorrow, you should have created cleaned bam files for all samples so we can move on to variant calling.
 
 ## Discussion Questions
 1) Is an alignment with a higher percent of mapped reads always better than one with a lower percent? Why or why not?
