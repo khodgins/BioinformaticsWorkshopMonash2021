@@ -336,14 +336,13 @@ racon -t 8 sra_data.fastq.gz ~/Topic_5/out/sa_reads.gfa1.paf ~/Topic_5/out/sa_un
 
 Step 4. Assess the quality of your long read assembly from error prone reads using [Quast](http://cab.cc.spbu.ru/quast/) 
 
-Step 5. Use a program called [Bandage](https://github.com/rrwick/Bandage) to view the assembly graph files from your various assemblies using a GUI. The sequences are represented by coloured lines (nodes), and overlaps between the sequences (edges) are represented by black lines.
-
+Step 5. Use a program called [Bandage](https://github.com/rrwick/Bandage) to view the assembly graph files from your various assemblies using a GUI. The sequences are represented by coloured bars (nodes), and alternate paths connecting the sequences (edges) are represented by black lines.
 
 Open the program by typing "Bandage" in the terminal at the prompt. A window will pop up. Click "File", "Open" and select your graph file of interest. Click on "draw graph"
 
 Graph files produced in the assembly process above:
 
-~/Topic_5/out/sa_assembly21/LastGraph (Velvet) (compare with the LastGraph in sa_assembly31 folder if you conducted that assembly)
+~/Topic_5/out/sa_assembly21/LastGraph (Velvet de bruijn graph) (compare with the LastGraph in sa_assembly31 folder if you conducted that assembly)
 ~/Topic_5/out/sa_miniasm.gfa (Miniasm)
 
 For a more detailed description of what the assembly graphs are showing you, see the Bandage [wiki](https://github.com/rrwick/Bandage/wiki/Simple-example)
