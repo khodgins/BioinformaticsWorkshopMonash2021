@@ -43,8 +43,8 @@ Now finally we can run BWA and align our raw sequence data
 ```bash
 bwa mem \
   ref/HanXRQr1.0-20151230.1mb.fa \
-  fastq/ANN1133.R1.fastq.gz \
-  fastq/ANN1133.R2.fastq.gz \
+  fastq/ANN1133.R1.fastq \
+  fastq/ANN1133.R2.fastq \
   -t 2 \
   -R '@RG\tID:ANN1133\tSM:ANN1133\tPL:illumina\tPU:biol525d\tLB:ANN1133_lib' \
   > bam/ANN1133.sam
@@ -81,9 +81,9 @@ less -S bam/ANN1133.sam
 ```
 Lets examine the sam file. It contains all the information on the reads from the fastq file, but also alignment information. 
 ### Questions:
-1. How are reads ordered in the sam file? 
+1. How are reads ordered in the sam file (hint: compare the sam to the original fastq)? 
 2. What does the 6th column represent? What would the string "1S93M6S" mean?
-3. What are three possible reasons why mapping quality could be low for a particular read?
+3. What are some possible reasons why mapping quality could be low for a particular read?
 4. What percent of your reads mapped to the genome? Hint: <span>Samtools</span>{: .spoiler}
 
 ```bash
