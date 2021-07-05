@@ -62,7 +62,7 @@ fastqc  ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq
 ```
 This will produce an html file that you can then open in your browser. I recommend using the GUI however. 
 
-There are a number of different quality metrics for you to assess using Fastqc. Please watch this [video](https://www.youtube.com/watch?v=bz93ReOv87Y) for a detailed explanation. There are examples of "good" and "bad" data that you can review [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). There is also an written explanation of each metric [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/)
+There are a number of different quality metrics for you to assess using Fastqc. Please watch this [video](https://www.youtube.com/watch?v=bz93ReOv87Y) for a detailed explanation. There are examples of "good" and "bad" data that you can review [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). There is also a written explanation of each metric [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/)
 
 You can also look at the quality metrics using the program that you will use to trim and filter the data (Prinseq). Many of the metrics are similar but Prinseq supplies a few different plots that you might find helpful.
 
@@ -74,9 +74,9 @@ perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data
 
 Upload the graph file (GBS12_brds_Pi_197A2_100k_graph.txt) to [here](http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi) to view/download your graphs (click Get report)
 
-For a description of the various plot types [here](http://prinseq.sourceforge.net/manual.html#STANDALONE)
+Find a description of the various plot types [here](http://prinseq.sourceforge.net/manual.html#STANDALONE)
 
-Question 1) Examine the QC results files for PmdT_147_100k_R1.fq  and PmdT_147_100k_R2.fq. Are there any issues with the data? Think carefully about the data and assess if these patterns represent issues with the data that need to be rectified through filtering (hint: GBS reads will start with the same restriction site, which is part of the genomic DNA)? If so what filters would you apply?
+Question 1) Examine the QC results files for GBS12_brds_Pi_197A2_100k_R1.fastq and GBS12_brds_Pi_197A2_100k_R1.fastq. Are there any issues with the data? Think carefully about the data and assess if these patterns represent issues with the data that need to be rectified through filtering (hint: GBS reads will start with the same restriction site, which is part of the genomic DNA)? If so, what filters would you apply?
 
 
 2. Within Prinseq (and most other programs), "trimming" will not affect the number of reads you have, but will alter the characteristics of the sequences, while "filtering" will remove reads that do not pass the criteria. This can result in un-paired reads in the two _1 and _2 files, but some programs (including Prinseq) take care of this by outputting separate files for the good (i.e. paired) reads and the unpaired (i.e. singletons) where one read has been filtered. 
@@ -187,8 +187,10 @@ perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data
 ```
 
 
-In case you want to set these programs up on your own machine here is the instructions that I used for installation
+In case you want to set these programs up on your own machine here are the instructions that I used for installation
 
+Prinseq:
+	
 Download at https://sourceforge.net/projects/prinseq/files/
 
 Unpack prinseq-lite-0.20.4.tar.gz by executing the following command:
@@ -196,6 +198,8 @@ Unpack prinseq-lite-0.20.4.tar.gz by executing the following command:
 tar -xf prinseq-lite-0.20.4.tar.gz
 
 
+Fastqc
+	
 wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip
 
 cd FastQC 
@@ -204,6 +208,8 @@ chmod 755 fastqc
 
 sudo ln -s /home/ubuntu/FastQC/fastqc /usr/bin/
 
+	
+Porechop
 
 git clone https://github.com/rrwick/Porechop.git
 
