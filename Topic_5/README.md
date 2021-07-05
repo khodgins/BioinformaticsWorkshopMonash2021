@@ -346,7 +346,7 @@ Graph files produced in the assembly process above:
 
 For a more detailed description of what the assembly graphs are showing you, see the Bandage [wiki](https://github.com/rrwick/Bandage/wiki/Simple-example)
 
-Question 5) How does your long read assembly (and assembly graph) compare to the best genome assembly derived from short reads? Why do you think this there are these differences?
+Question 5) How does your long read assembly (and assembly graph) compare to the best genome assembly derived from short reads? Why do you think there are these differences?
 
 
 ## Advanced:
