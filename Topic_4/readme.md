@@ -133,20 +133,21 @@ The `cat file.txt` takes each line of the file file.txt. Each line then becomes 
 A bash script is a plain text file (i.e. not rich text, nor a word doc) which contains bash commands. You can create the file on your computer and copy it over, or you can edit it directly from the server with one of the installed editors (this is covered in [topic 2, Editing](../Topic_2/#editing). The name of the file is up to you, but bash scripts are given the `.sh` extension by convention:
 
 HINTS:
-  * Write out the list of commands that you would need to align one file. What would need to change in the command to align the second file or the third (what part of the file name changes versus stays the same)?
+  * Write out the list of commands that you would need to align one file. What would you need to change in the command to align the second file or the third (what parts of the file name changes versus stays the same from sample to sample)?
   * You will need to use a loop 
   * Consider using variables for directory paths e.g., "ref=~/Topic_4/ref/"
   {: .spoiler}
 
 MORE HINTS:
-  * Can you make a file that contains a list of all the prefixes to the fastq files (this is the part of the name that will change from file to file e.g., ANN1133). You will need to use "ls" "grep" and "sed" and redirect the output to a file (e.g., filelist.txt)
+  * Can you make a file that contains a list of all the prefixes to the fastq files (this is the part of the name that will change from file to file e.g., ANN1133). You will need to use "ls" "grep" and "sed" and redirect (>>) the output to a file (e.g., named filelist.txt)
   * Now try and take that file with the list of prefixes (e.g., filelist.txt) and print the first lines of each fastq file to the screen
 
-        for file in fname `cat filelist.txt`;
+```bash
+        for file in fname `cat filelist.txt`
 	do 
 	  head -n1 ~/Topic_4/fastq/$fname.R1.fastq 
 	done 
-	
+```	
 
   {: .spoiler}
   
