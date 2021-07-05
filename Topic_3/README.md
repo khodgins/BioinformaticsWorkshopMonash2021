@@ -183,7 +183,7 @@ Here is an example command:
 
 ```bash
 cd  ~/Topic_3/out
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/sra_fil.fastq -log nanolog -out_good sra_fil2 -min_len 500 -trim_left 50
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/out/sra_fil.fastq -log nanolog -out_good sra_fil2 -min_len 500 -trim_left 50
 ```
 
 
@@ -192,29 +192,23 @@ In case you want to set these programs up on your own machine here are the instr
 Prinseq:
 	
 Download at https://sourceforge.net/projects/prinseq/files/
-
 Unpack prinseq-lite-0.20.4.tar.gz by executing the following command:
-
+```bash
 tar -xf prinseq-lite-0.20.4.tar.gz
+```
 
-
-Fastqc
-	
+Fastqc:
+```bash
 wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip
-
 cd FastQC 
-
 chmod 755 fastqc 
-
 sudo ln -s /home/ubuntu/FastQC/fastqc /usr/bin/
-
+```
 	
-Porechop
-
+Porechop:
+```bash
 git clone https://github.com/rrwick/Porechop.git
-
 cd Porechop
-
 sudo python3 setup.py install
-
 porechop -h
+```
