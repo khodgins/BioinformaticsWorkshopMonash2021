@@ -10,25 +10,27 @@ topictitle: "Sequence Alignment"
 * [Slides](./Topic 4.pdf)
 
 
-Today we're going to align sequence data to a reference genome useing BWA and explore what a BAM file is.
+Today we're going to align sequence data to the sunflower reference genome useing BWA and explore what a BAM file is.
 
 The first step is to set up a directory structure so the resulting files will be organized and copy the raw data to your home directory.
 
 ```bash
 
-#Navigate to your working directory
-cd ~
+#Navigate to the Topic_4 folder in your home working directory
+cd ~/Topic_4
 
 #Copy the reference directory to your working directory
-cp -r /mnt/data/ref ./
+cp -r /mnt/workshop/data/ref ./
 
-#Copy the fastq files to your working directory
-cp -r /mnt/data/fastq ./
+#Copy the fastq files to this directory
+cp -r /mnt/workshop/data/fastq ./
 
-#Make a new directory for your resulting bam files
+#Make a folder to put the bam
 mkdir bam
 
 ```
+Double check and see if the files have copied over and the files are the correct size as those in the /mnt/workshop/data/fastq folder.
+
 Once that is done, we have to index our reference genome.
 
 ```bash
@@ -37,9 +39,9 @@ Once that is done, we have to index our reference genome.
 bwa index ref/HanXRQr1.0-20151230.1mb.fa
 
 ```
-Now finally we can run BWA and align our data
+Now finally we can run BWA and align our raw sequence data 
 ```bash
-/usr/bin/bwa mem \
+bwa mem \
   ref/HanXRQr1.0-20151230.1mb.fa \
   fastq/ANN1133.R1.fastq.gz \
   fastq/ANN1133.R2.fastq.gz \
@@ -49,21 +51,21 @@ Now finally we can run BWA and align our data
   
 ```
 Lets break this command down since it has several parts:
-**/usr/bin/bwa** <= We're calling the program _bwa_ from the directory _/usr/bin/_. This is the full path to that program so you can call this no matter where you are in the file system.
+**bwa** <= We're calling the program _bwa_ from the directory _/usr/local/bin/_. You can call this program no matter where you are in the file system. When programs are installed in the /usr/loca/bin/ directory the path does not need to be specified.
 
 **mem** <= This is the bwa command we are calling. It is specific to bwa and not a unix command.
 
 **\\** <= Having this at the end of the line tells the shell that the line isn't finished and keeps going. You don't need to use this when typing commands in, but it helps break up really long commands and keeps your code more organized.
 
-**ref/HanXRQr1.0-20151230.1mb.fa** <= This is the reference genome. We're using a relative path here so you need be in /mnt/<USERNAME> or it won't be able to find this file.
+**ref/HanXRQr1.0-20151230.1mb.fa** <= This is the reference genome. We're using a relative path here so you need be in ~/Topic_4 or it won't be able to find this file.
   
-**fastq/ANN1133.R1.fastq.gz** <= This is the forward read (e.g. read 1)  set for the first sample. It's also a relative path and we can see that the file has been gzipped (since it has a .gz ending).
+**fastq/ANN1133.R1.fastq.gz** <= This is the forward read (e.g. read 1)  set for the first sunflower sequence sample. It's also a relative path and we can see that the file has been gzipped (since it has a .gz ending).
 
-**fastq/ANN1133.R2.fastq.gz** <= This is the reverse read (e.g. read 2)  set for the first sample.
+**fastq/ANN1133.R2.fastq.gz** <= This is the reverse read (e.g. read 2)  set for the first sunflower sample.
   
-**-t 2** <= This is telling the program how many threads (i.e. cpus) to use. In this case we're only using two because we're sharing the machine with the other students.
+**-t 2** <= This is telling the program how many threads (i.e. cpus) to use. In this case we're only using two because we have limited resources on this VM.
 
-**-R '@RG\tID:ANN1133\tSM:ANN1133\tPL:illumina\tPU:biol525d\tLB:ANN1133_lib'** <= This is adding read group information to the resulting sam file. Read group information lets other programs know what the sample name along with other factors. It is necessary for GATK to run later on.
+**-R '@RG\tID:ANN1133\tSM:ANN1133\tPL:illumina\tPU:SBS\tLB:ANN1133_lib'** <= This is adding read group information to the resulting sam file. Read group information lets other programs know what the sample name along with other factors. It is necessary for GATK to run later on.
 
 **> bam/ANN1133.sam** <= This is directing the output of the program into the file _bam/ANN1133.sam_
 
@@ -142,7 +144,6 @@ MORE HINTS:
   #First set up variable names
   bam=~/bam
   fastq=~/fastq
-  bwa=/usr/bin/bwa
   ref_file=~/ref/HanXRQr1.0-20151230.1mb.fa
 
   #Then get a list of sample names, without suffixes
@@ -151,7 +152,7 @@ MORE HINTS:
   #Then loop through the samples
   while read name
   do
-    $bwa mem \
+    bwa mem \
     -R "@RG\tID:$name\tSM:$name\tPL:ILLUMINA" \
     $ref_file \
     $fastq/$name.R1.fastq.gz \
@@ -168,8 +169,8 @@ MORE HINTS:
 After your final bam files are created, and you've checked that they look good, you should remove intermediate files to save space. You can build file removal into your bash scripts, but it is often helpful to only add that in once the script works. It's hard to troubleshoot a failed script if it deletes everything as it goes.
 ### By topic 7, you should have created cleaned bam files for all samples.
 
-## Daily assignments
-1. Is an alignment with a higher percent of mapped reads always better than one with a lower percent? Why or why not?
-2. I want to reduce the percent of incorrectly mapped reads when using BWA. What setting or settings should I change in BWA?
-3. What are two ways that could be used to evaluate which aligner is best?
+## Discussion Questions
+1) Is an alignment with a higher percent of mapped reads always better than one with a lower percent? Why or why not?
+2) I want to reduce the percent of incorrectly mapped reads when using BWA. What setting or settings should I change in BWA?
+3) What are two ways that could be used to evaluate which aligner is best?
 
