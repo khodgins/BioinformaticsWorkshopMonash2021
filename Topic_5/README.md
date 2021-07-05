@@ -336,33 +336,75 @@ racon -t 8 sra_data.fastq.gz ~/Topic_5/out/sa_reads.gfa1.paf ~/Topic_5/out/sa_un
 
 Step 4. Assess the quality of your long read assembly from error prone reads using [Quast](http://cab.cc.spbu.ru/quast/) 
 
-
-Question 5) How does your long read assembly compare to the best genome assembly derived from short reads that are much less error prone? Why do you think this is the case?
-
-
-Another popular long read assembler is [Canu](https://canu.readthedocs.io/en/latest/tutorial.html#canu-the-command) and it is installed on the VM. You could try assembling your long reads with his program as a point of comparison. However, it is a bit slow for this tutorial so you would not get the results by the end of the workshop.
+Step 5. Use a program called [Bandage](https://github.com/rrwick/Bandage) to view the assembly graph files from your various assemblies using a GUI. The sequences are represented by coloured lines (nodes), and overlaps between the sequences (edges) are represented by black lines.
 
 
-###########
+Open the program by typing "Bandage" in the terminal at the prompt. A window will pop up. Click "File", "Open" and select your graph file of interest. Click on "draw graph"
 
-How to download and install Minimap2, Miniasm & Racon - This was already done for you but incase you need to do it in the future, here is what was done:
+Graph files produced in the assembly process above:
 
+~/Topic_5/out/sa_assembly21/LastGraph (Velvet) (compare with the LastGraph in sa_assembly31 folder if you conducted that assembly)
+~/Topic_5/out/sa_miniasm.gfa (Miniasm)
+
+For a more detailed description of what the assembly graphs are showing you, see the Bandage [wiki](https://github.com/rrwick/Bandage/wiki/Simple-example)
+
+Question 5) How does your long read assembly (and assembly graph) compare to the best genome assembly derived from short reads? Why do you think this there are these differences?
+
+
+## Advanced:
+
+Test out [Minipolish](https://github.com/rrwick/Minipolish#method) which performs iterative Racon polishing rounds 
+
+usage: minipolish [-t THREADS] [--rounds ROUNDS] [--pacbio] [-h] [--version] reads assembly
+
+reads                          Long reads for polishing (FASTA or FASTQ format)
+assembly                       Miniasm assembly to be polished (GFA format)
+
+Test if Minipolish improves the assembly:
+```bash
+cd ~/Topic_5/data/nanopore/
+minipolish -t 8 sra_data.fastq.gz ~/Topic_5/out/sa_miniasm.gfa > ~/Topic_5/out/sa_polished.gfa
+awk '/^S/{print ">"$2"\n"$3}' ~/Topic_5/out/sa_polished.gfa > ~/Topic_5/out/sa_polished.fasta
+```
+Upload the assembly (sa_polished.fasta) to Quast to examine the metics and examine the polished graph in Bandage (sa_polished.gfa)
+
+Finally, you can test if the filtering of the Nanopore data (Topic_3) will improve the assembly. Instead of running each step separately, you can run the entire Minimap2+Miniasm+Minipolish pipeline using a single wrapper (miniasm_and_minipolish.sh) found in ~/Topic_5/scripts.
+
+```bash
+cd ~/Topic_5/scripts
+sh miniasm_and_minipolish.sh ~/Topic_3/out/sra_fil2.fastq 8 > ~/Topic_5/out/sa_filt_polished.gfa
+awk '/^S/{print ">"$2"\n"$3}' ~/Topic_5/out/sa_filt_polished.gfa > ~/Topic_5/out/sa_filt_polished.fasta
+```
+Upload the assembly (sa_filt_polished.gfa) to Quast to examine the metics and examine the polished graph in Bandage (sa_filt_polished.gfa).
+
+
+####
+
+How to download and install Minimap2, Miniasm, Racon & Bandage
+- This was already done for you but incase you need to do it in the future, here is what was done:
+
+```bash
 git clone https://github.com/lh3/minimap2 && (cd minimap2 && sudo make)
-
 git clone https://github.com/lh3/miniasm  && (cd miniasm  && sudo make)
-
+```
 (mv into /user/local/bin/)
 
-
+```bash
 git clone --recursive https://github.com/lbcb-sci/racon.git racon
-
 cd racon
-
 mkdir build
-
 cd build
-
 cmake -DCMAKE_BUILD_TYPE=Release ..
-
 make
+```
 
+Bandage installation
+* Ensure the package lists are up-to-date: sudo apt-get update
+* Install prerequisite packages: sudo apt-get install build-essential git qtbase5-dev libqt5svg5-dev
+* Download the Bandage code from GitHub: git clone https://github.com/rrwick/Bandage.git
+* Open a terminal in the Bandage directory.
+* Set the environment variable to specify that you will be using Qt 5, not Qt 4: export QT_SELECT=5
+* Run qmake to generate a Makefile: qmake
+* Build the program: make
+* Bandage should now be an executable file.
+* Optionally, copy the program into /usr/local/bin: sudo make install. The Bandage build directory can then be deleted.
