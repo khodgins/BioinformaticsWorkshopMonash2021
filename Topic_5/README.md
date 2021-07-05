@@ -1,4 +1,3 @@
-
 ---
 title: "Topic 5: Assembly"
 permalink: /Topic_5/
