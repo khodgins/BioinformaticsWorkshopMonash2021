@@ -42,8 +42,8 @@ The first step is to make duplicate reads using picardtools. If you were using G
 
 for name in `cat samplelist.txt` 
 do
-  java -jar picard.jar MarkDuplicates \
-  I=bam/$name.sort.bam O=$name.sort.dedup.bam \
+  java -jar /usr/local/bin/picard.jar MarkDuplicates \
+  I=bam/$name.sort.bam O=bam/$name.sort.dedup.bam \
   M=log/$name.duplicateinfo.txt
   samtools index bam/$name.sort.dedup.bam
 done 
@@ -55,7 +55,7 @@ Now in the bam files duplicate reads are flagged. Take a look in the log directo
 
 To use GATK, we have to index our reference genome. An index is a way to allow rapid access to a very large file. For example, it can tell the program that the third chromosome starts at bit 100000, so when the program wants to access that chromosome it can jump directly there rather than scan the whole file. Some index files are human readable (like .fai files) while others are not.
 ```bash
-java -jar picard.jar CreateSequenceDictionary R= ref/HanXRQr1.0-20151230.1mb.fa O= ref/HanXRQr1.0-20151230.1mb.dict
+java -jar /usr/local/bin/picard.jar CreateSequenceDictionary R= ref/HanXRQr1.0-20151230.1mb.fa O= ref/HanXRQr1.0-20151230.1mb.dict
 
 samtools faidx ref/HanXRQr1.0-20151230.1mb.fa
 ```
@@ -65,19 +65,25 @@ The next step is to use GATK to create a GVCF file for each sample. This file su
 
 This step can take a few minutes so lets first test it with a single sample to make sure it works.
 ```
-for name in `cat ~/samplelist.txt | head -n1` 
+for name in `cat samplelist.txt | head -n1` 
 do 
-java -Xmx15g -jar gatk.jar HaplotypeCaller \
+gatk HaplotypeCaller \
 -R ref/HanXRQr1.0-20151230.1mb.fa \
 -I bam/$name.sort.dedup.bam \
 --native-pair-hmm-threads 3 \
 -ERC GVCF \
--O gvcf/$name.sort.dedup.g.vcf 
+-O gvcf/$name.g.vcf.gz 
 done
 ```
 Check your gvcf file to make sure it has a .idx index file. If the haplotypecaller crashes, it will produce a truncated gvcf file that will eventually crash the genotypegvcf step. Note that if you give genotypegvcf a truncated file without a idx file, it will produce an idx file itself, but it still won't work.
 
-We would run the HaplotypeCaller on the rest of the samples, but that will take too much time, so once you're satisfied that your script works, you can copy the rest of the gvcf files (+ idx files) from /mnt/workshop/data/gvcf into ~/gvcf.
+We would run the HaplotypeCaller on the rest of the samples, but that will take too much time, so once you're satisfied that your script works, you can copy the rest of the gvcf files (+ idx files) from /mnt/workshop/data/gvcf into ~/Topic_4/gvcf.
+
+```bash
+
+cp /mnt/workshop/data/gvcf/* ~/Topic_4/gvcf/
+
+```
 
 The next step is to import our gvcf files into a genomicsDB file. This is a compressed database representation of all the read data in our samples. It has two important features to remember:
 
@@ -96,10 +102,10 @@ sample3 \t gvcf/sample3.g.vcf.gz
 
 ```bash
 
-for i in `ls gvcf/*g.vcf | sed 's/.sort.dedup.g.vcf//g' | sed 's/gvcf\///g'`
+for i in `ls gvcf/*g.vcf.gz | sed 's/.g.vcf.gz//g' | sed 's/gvcf\///g'`
 do
-  echo -e "$i\tgvcf/$i.sort.dedup.g.vcf"
-done > ~/sample_map.txt
+  echo -e "$i\tgvcf/$i.g.vcf.gz"
+done > ~/Topic_4/sample_map.txt
 
 ```
 
@@ -107,31 +113,30 @@ Lets break down this loop to understand how its working
 
 **for i in `...`** <= This is going to take the output of the commands in the `...` and loop through it line by line, putting the each line into the variable $i. You can try running the portion in the `...` and print the output to screen to see how it works.
 
-**ls gvcf/"*.g.vcf"** <= List all files in the gvcf directory that end with .g.vcf
+**ls gvcf/"*.g.vcf.gz"** <= List all files in the gvcf directory that end with .g.vcf.gz
 
 **\| sed s/.sort.dedup.g.vcf//g** <= Remove the suffix to the filename so that its only the sample name remaining.
 
 **do** <= Starts the part of the script where you put the commands to be repeated.
 
-**echo -e "$i\t$gvcf/$i.sort.dedup.g.vcf"** <= Print out the variable $i (which is the sample name) and then a second column with the full file name along with the soft path.
+**echo -e "$i\t$gvcf/$i.g.vcf.gz"** <= Print out the variable $i (which is the sample name) and then a second column with the full file name along with the soft path.
 
-**done > ~/sample_map.txt** <= Take all the output and put it into a file name _biol525d.sample_map_.
+**done > ~/sample_map.txt** <= Take all the output and put it into a file name _sample_map.txt_.
 
 
-Next we call GenomicsDBImport to actually create the database.
+Next we call GenomicsDBImport to actually create the database for Chr01.
 ```bash
-java -Xmx10g -Xms10g -jar gatk \
-       GenomicsDBImport \
+gatk GenomicsDBImport \
        --genomicsdb-workspace-path db/HanXRQChr01 \
        --batch-size 50 \
        -L HanXRQChr01 \
-       --sample-name-map ~/sample_map.txt \
+       --sample-name-map ~/Topic_4/sample_map.txt \
        --reader-threads 3
 ```
 
-With the genomicsDB created, we're finally ready to actually call variants and output a vcf
+With the genomicsDB created, we're finally ready to actually call variants and output a vcf for Chr01
 ```bash
-java -Xmx10g -jar gatk GenotypeGVCFs \
+gatk GenotypeGVCFs \
    -R ref/HanXRQr1.0-20151230.1mb.fa \
    -V gendb://db/HanXRQChr01 \
    -O vcf/HanXRQChr01.vcf.gz
@@ -146,7 +151,28 @@ Try to find an indel. Do you see any sites with more than 1 alternate alleles?
 
 Pick a site and figure out, whats the minor allele frequency? How many samples were genotyped? 
 
-We've now called variants for a single chromosome, but there are other chromosomes. In this case there are only three, but for many genomes there will be thousands of contigs. Your next challenge is to write a loop to create the genomicsdb file and then VCF for each chromosome. 
+We've now called variants for a single chromosome, but there are other chromosomes. In this case there are only three, but for many poorly assembled genomes there can be thousands of contigs. Your next challenge is to write a loop to create the genomicsdb file and then VCF for each chromosome. 
+
+```bash
+grep \> ref/HanXRQr1.0-20151230.1mb.fa | sed 's/>//g' > Chr.names
+for chr in `cat Chr.names | tail -n2`
+do
+gatk GenomicsDBImport \
+       --genomicsdb-workspace-path db/$chr \
+       --batch-size 50 \
+       -L $chr \
+       --sample-name-map ~/Topic_4/sample_map.txt \
+       --reader-threads 3
+
+#With the genomicsDB created, we're finally ready to actually call variants and output a vcf for Chr01
+
+gatk GenotypeGVCFs \
+   -R ref/HanXRQr1.0-20151230.1mb.fa \
+   -V gendb://db/$chr \
+   -O vcf/$chr.vcf.gz
+done
+```
+
 
 Once you have three VCF files, one for each chromosome, you can concatenate them together to make a single VCF file. We're going to use _bcftools_ which is a very fast program for manipulating vcfs as well as bcfs (the binary version of a vcf).
 
@@ -172,5 +198,9 @@ You've done it! We have a VCF. The later tutorials in this series use this vcf f
 2. You're trying to create a very stringent set of SNPs. Based on the site information GATK produces, what filters would you use? Include the actual GATK abbreviations.
 3. What is strand bias and why would you filter based on it?
 
-
+Programs requirments
+[gatk](
+[picard](
+[samtools](
+[bcftools](
 
