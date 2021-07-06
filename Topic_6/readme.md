@@ -153,6 +153,9 @@ Pick a site and figure out, whats the minor allele frequency? How many samples w
 
 We've now called variants for a single chromosome, but there are other chromosomes. In this case there are only three, but for many poorly assembled genomes there can be thousands of contigs. Your next challenge is to write a loop to create the genomicsdb file and then VCF for each chromosome. 
 
+<details>
+<summary markdown="span">**Answer**
+</summary>
 ```bash
 grep \> ref/HanXRQr1.0-20151230.1mb.fa | sed 's/>//g' > Chr.names
 for chr in `cat Chr.names | tail -n2`
@@ -185,7 +188,8 @@ bcftools concat \
   -O z > vcf/full_genome.vcf.gz
 
 ```
-
+</details>
+  
 You've done it! We have a VCF. The later tutorials in this series use this vcf for downstream analysis. Unfortunately we do not have time to complete them this year during the workshop.
 
 ### Coding challenge
