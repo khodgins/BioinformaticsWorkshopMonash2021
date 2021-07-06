@@ -8,11 +8,6 @@ topictitle: "Population genomics"
 ## Accompanying material
 * [Slides](./Topic 8mod.pdf)
 
-## Daily Questions:
-1. For a site that is invariant in both populations (i.e. a locus with no variation), what is Fst?
-2. What effect does missing data have on a PCA?
-3. What is the average Fst between ARG and ANN samples in our dataset? Hint, SNPrelate can calculate Fst.
-
 ### NOTE:
 * If you didn't complete creating _full_genome.vcf.gz_ in Topic 6, you can copy it to ~/vcf from /mnt/workshop/data/vcf
 
