@@ -1,7 +1,7 @@
 ---
-title: "Topics 8: Population genomics"
+title: "Topics 7: Population genomics"
 permalink: /Topic_8-9/
-topickey: 8
+topickey: 7
 topictitle: "Population genomics"
 ---
 
@@ -14,7 +14,7 @@ topictitle: "Population genomics"
 3. What is the average Fst between ARG and ANN samples in our dataset? Hint, SNPrelate can calculate Fst.
 
 ### NOTE:
-* If you didn't complete creating _full_genome.vcf.gz_ in Topic 7, you can copy it to ~/vcf from /mnt/data/vcf
+* If you didn't complete creating _full_genome.vcf.gz_ in Topic 6, you can copy it to ~/vcf from /mnt/workshop/data/vcf
 
 
 Last topic we called variants across the three chromosomes. If you look at the VCF, you'll notice there are a lot of sites only genotyped in a small subset of the samples. This can happen with lower overall read depth (in this case this is whole genome sequencing at ~7X depth), but can be due to other factors like divergence been sample and reference. We also have indels, and SNPs with more than two alleles. Many programs strictly require biallelic sites so lets first filter the VCF to a smaller set of usable sites.
@@ -25,6 +25,7 @@ We're going to use _bcftools_ a very fast program for processing and filtering V
 * At least 2 copies of the alternate allele
 
 ```bash
+cd ~/Topic_4/
 bcftools  view \
 	-c 2 \
 	-i 'INFO/AN >= 18' \
@@ -39,7 +40,28 @@ tabix -p vcf vcf/full_genome.filtered.vcf.gz
 ```
 
 ##Coding challenge
-* How many sites remain in the filtered VCF? How many in the chromosome HanXRQChr01?
+* How many sites remain in the filtered VCF? 
+
+<details>
+<summary markdown="span">**Answer**
+</summary>
+```bash
+zgrep -v \^# vcf/full_genome.filtered.vcf.gz | wc -l
+```
+</details>	
+
+How many in the chromosome HanXRQChr01?
+
+<details>
+<summary markdown="span">**Answer**
+</summary>
+```bash
+zgrep -v \^# vcf/full_genome.filtered.vcf.gz | grep Chr01 | wc -l
+zgrep -v \^# vcf/full_genome.filtered.vcf.gz | grep Chr03 | wc -l
+zgrep -v \^# vcf/full_genome.filtered.vcf.gz | grep Chr02 | wc -l
+```
+</details>
+
 
 A common first pass analysis is to use structure to look at clustering in your data. Admixture is similar to STRUCTURE but orders of magnitude faster. We're going use that, but before that we have to convert our VCF to the bed format. We're going to use plink to do that. Plink is a large set of tools for manipulating genetic data, running GWAS and calculating various stats. It's geared towards human data, so sometimes you have to force it to work with non-human data. For example, it assumes you have human chromosomes (eg 23 of them) and will complain if that doesn't see them.
 
