@@ -168,8 +168,6 @@ MORE HINTS:
 </summary>
 ```bash
   #First set up variable names
-
-  #Then loop through the samples
   bam=~/Topic_4/bam
   fastq=~/Topic_4/fastq
   ref_file=~/Topic_4/ref/HanXRQr1.0-20151230.1mb.fa
