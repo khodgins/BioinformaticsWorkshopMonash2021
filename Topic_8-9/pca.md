@@ -143,8 +143,8 @@ Plotting challenge 1
 ```r
 
 tab <- data.frame(sample = pca$sample.id,
-                  PC3 = pca$eigenvect[,3],    # the first eigenvector
-                  PC4 = pca$eigenvect[,4],    # the second eigenvector
+                  PC3 = pca$eigenvect[,3],    # the 3rd eigenvector
+                  PC4 = pca$eigenvect[,4],    # the 4th eigenvector
                   stringsAsFactors = FALSE)
 
 
