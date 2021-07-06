@@ -66,10 +66,16 @@ There are a number of different quality metrics for you to assess using Fastqc. 
 
 You can also look at the quality metrics using the program that you will use to trim and filter the data (Prinseq). Many of the metrics are similar but Prinseq supplies a few different plots that you might find helpful.
 
-These commands make a file containing information to produced the Prinseq QC plots in the folder ~/Topic_3/out
+These commands make a file containing information to produced the Prinseq QC plots in the folder ~/Topic_3/out (note that the "\" allows use to continue the command on the next line to make it more readable. You can remove the slashes but you must then place the code all on the same line.)
+
 ```bash
+
 cd  ~/Topic_3/out
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq -fastq2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R2.fastq -graph_data ~/Topic_3/out/GBS12_brds_Pi_197A2_100k_graph.txt 
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl \
+-fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq \
+-fastq2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R2.fastq \
+-graph_data ~/Topic_3/out/GBS12_brds_Pi_197A2_100k_graph.txt 
+
 ```
 
 Upload the graph file (GBS12_brds_Pi_197A2_100k_graph.txt) to [here](http://edwards.sdsu.edu/cgi-bin/prinseq/prinseq.cgi) to view/download your graphs (click Get report)
@@ -84,8 +90,13 @@ Question 1) Examine the QC results files for GBS12_brds_Pi_197A2_100k_R1.fastq a
 Trim off bases from either end with less than a quality score of 10 (-trim_qual_left and -trim_qual_right), and filter any sequences that have less than 70 base pairs (-min_len 70):
 
 ```bash
+	
 cd  ~/Topic_3/out
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq -fastq2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R2.fastq -log gbslog1 -out_good GBS_filter1 -min_len 70 -trim_qual_left 10 -trim_qual_right 10 
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl \ 
+-fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq \
+-fastq2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R2.fastq \
+-log gbslog1 -out_good GBS_filter1 -min_len 70 -trim_qual_left 10 -trim_qual_right 10 
+
 ```
 
 Note that you can view the log file (gbslog1) to see the command executed and the output (including the default parameters run)
@@ -143,7 +154,10 @@ Use Prinseq to the filter the data. Below is an example command but you should a
 
 ```bash
 cd  ~/Topic_3/out
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/frag_1.fastq -fastq2 ~/Topic_3/data/frag_2.fastq -log wgslog1 -out_good WGS_filter1 -min_len 70 -trim_qual_left 10 -trim_qual_right 10  
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl \
+-fastq ~/Topic_3/data/frag_1.fastq -fastq2 ~/Topic_3/data/frag_2.fastq \
+-log wgslog1 -out_good WGS_filter1 -min_len 70 -trim_qual_left 10 -trim_qual_right 10  
+	
 ```
 
 Re-plot the WGS_filter1 data using FastQC. 
@@ -183,7 +197,8 @@ Here is an example command:
 
 ```bash
 cd  ~/Topic_3/out
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/out/sra_fil.fastq -log nanolog -out_good sra_fil2 -min_len 500 -trim_left 50
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/out/sra_fil.fastq \
+-log nanolog -out_good sra_fil2 -min_len 500 -trim_left 50
 ```
 
 
