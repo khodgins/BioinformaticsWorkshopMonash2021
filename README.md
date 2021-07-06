@@ -12,7 +12,7 @@ This repository contains all the files used to generate the website.
 
 You can use `git` which tracks changes and supports incremental updates:
 
-    git clone https://github.com/UBC-biol525D/UBC-biol525D.github.io.git
+    git clone https://github.com/khodgins/BioinformaticsWorkshopMonash2021.git
 
 If the course content changes, you can update your local copy by going into to the **biol525D** directory that was created by the previous command and invoking the command:
 
@@ -42,7 +42,7 @@ Modified work (c) 2019 Gregory Owens, Kathryn Hodgins, JS Legare
 
 Modified work (c) 2020 Kathryn Hodgins, Julia Kreiner, Tom Booker
 
-Modified work (c) 2021 Kathryn Hodgins
+Modified work (c) 2021 Kathryn Hodgins, Paul Battlay
 
 This program is distributed under the MIT (X11) License, which should
 be distributed with the package. If not, it can be found here:
