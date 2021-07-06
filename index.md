@@ -13,10 +13,10 @@ menuPosition: 1
 The purpose of this course is to provide biology graduate students with the theoretical knowledge and practical skills for the analysis of next generation sequence data. The course will provide an overview of sequencing approaches, genome assembly, sequence alignment techniques and variant calling. The manipulation of genomic datasets using the commandline will  be taught through interactive tutorials. The unit will be presented as a series of short lectures and lab exercises over a three day period. 
 
 ## Instructors
-Dr. Kathryn Hodgins
+Dr. Kathryn Hodgins and Dr. Paul Battlay
 
 ## Format
-A mix of pre-recorded lectures and face to face lab exercises, running in a 2-hour block for each topic.
+A mix of live/pre-recorded lectures and face to face lab exercises, running in a 2-hour block for each topic.
 
 ## Prequisites
 Students should have basic knowledge in R and some command line knowledge (although the latter could be obtained during the course)
@@ -43,9 +43,9 @@ To get up to speed on working with a Unix system, take a look at the [unix help]
 5. [Topic 5](./Topic_5/) Assembly: transcriptome and genome assembly 
 6. [Topic 6](./Topic_6/) SNP and variant calling 
 
-In previous years, there has been a short introduction to RNAseq. We have not included that topic this year, but the slides and materials are available for those who are interested:
+In previous years, there has been a short introduction to population genomcis and plotting in R. We have not included that topic this year, but the slides and materials are available for those who are interested:
 
-7. [Topic 7](./Topic_7/) RNAseq
+7. [Topic 7](./Topic_8-9/) Population Genomics & Plotting in R
 
 ## Use and modification of these resources
 
@@ -61,7 +61,7 @@ Modified work (c) 2019 Gregory Owens, Kathryn Hodgins, J.S. Legare
 
 Modified work (c) 2020 Kathryn Hodgins, Julia Kreiner, Tom Booker
 
-Modified work (c) 2021 Kathryn Hodgins
+Modified work (c) 2021 Kathryn Hodgins, Paul Battlay
 
 This program is distributed under the MIT (X11) License, which should be distributed with the package.
 If not, it can be found here: http://www.opensource.org/licenses/mit-license.php
