@@ -1,6 +1,6 @@
 ---
-title: "Topic 9 (continued): Principal Component Analysis in R"
-topickey: 9.1
+title: "Topic 8 (continued): Principal Component Analysis in R"
+topickey: 8.1
 topictitle: "PCA"
 ---
 
@@ -136,6 +136,26 @@ Plotting challenge 1
 
 -   Plot the 3rd and 4th principal components.
 
+<details>
+<summary markdown="span">**Answer**
+</summary>
+```r
+
+tab <- data.frame(sample = pca$sample.id,
+                  PC3 = pca$eigenvect[,3],    # the first eigenvector
+                  PC4 = pca$eigenvect[,4],    # the second eigenvector
+                  stringsAsFactors = FALSE)
+
+
+#Plot a PCA image
+tab %>%
+  mutate(group = substr(sample,1,3)) %>%
+  ggplot(.,aes(x=PC3,y=PC4)) + 
+  geom_point(aes(color=group))
+  
+  ```
+
+</details>
 
 
 Plotting challenge 2
@@ -147,4 +167,17 @@ HINT:
   * Try the ggrepel package
   {: .spoiler}
 
-Lastly, lets move on to [plotting Fst across the genome](./fst.md)
+<details>
+<summary markdown="span">**Answer**
+</summary>
+        
+```r
+library(ggrepel)
+ tab %>%
+   mutate(group = substr(sample,1,3)) %>%
+   ggplot(.,aes(x=PC3,y=PC4, label=sample)) +  
+   geom_text_repel() +
+   geom_point(aes(color=group))
+ ```
+</details>
+
