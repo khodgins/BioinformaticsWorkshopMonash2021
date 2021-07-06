@@ -61,7 +61,7 @@ Hint: try sort (look up the options)
 Your goal for today is to assemble a bacterial genome (Staphylococcus aureus), as best you can, using short reads or long reads. You will then evaluate your assemblies to decide on the optimal method.
 
 
-### Short read assembly
+## Short reads
 
 This genome was downloaded from GAGE (Genome Assembly Gold-Standard Evaluations) website (http://gage.cbcb.umd.edu/data/index.html): 
 
@@ -292,12 +292,16 @@ Step 1. Overlap: First use Minimap2 to map the Nanopore reads against themselves
 First move into the directory with the data
 
 ```bash
+
 cd ~/Topic_5/data/nanopore/
+
 ```
 
 Run Minimap2 
 ```bash
+
 minimap2 -x ava-ont sra_data.fastq.gz sra_data.fastq.gz | gzip -1 > ~/Topic_5/out/sa_minimap.paf.gz
+
 ```
 
 The above command will compare all reads in the fastq file (sra_data.fastq) against themselves. The output will be passed to gzip (gzip -1) to compress the output and redirect (>) the output into a file called sa_minimap.paf.gz.
@@ -311,7 +315,9 @@ Step 2. Layout: Use the Minimap2 output and the trimmed reads to assemble unitig
 Miniasm is a very fast OLC-based de novo assembler for noisy long reads. It takes all-vs-all read self-mappings as input and outputs an assembly graph in the GFA format. 
 
 ```bash
+
 miniasm -f sra_data.fastq.gz ~/Topic_5/out/sa_minimap.paf.gz > ~/Topic_5/out/sa_miniasm.gfa
+
 ```
 
 Contrary to most assemblers, Miniasm does not have a consensus step. It simply concatenates pieces of read sequences to generate the final unitig sequences. Therefore we need to use another tool to provide the final consensus. 
@@ -320,17 +326,24 @@ Step 3. Consensus: Align the reads back to the layout produced by Miniasm using 
 
 Step3a. GFA to fasta (produce a fasta file of the unitigs from the graph file)
 ```bash
+
 awk '/^S/{print ">"$2"\n"$3}' ~/Topic_5/out/sa_miniasm.gfa > ~/Topic_5/out/sa_unitigs.fasta
+
 ```
 
 Step 3b. Map the reads (sra_data.fastq) to the unitigs (sa_unitigs.fasta) using Minimap2
 ```bash
+
 minimap2 ~/Topic_5/out/sa_unitigs.fasta sra_data.fastq.gz  > ~/Topic_5/out/sa_reads.gfa1.paf
+
 ```
 
 Step 3c. Error correct the unitigs (sa_unitigs.fasta) using the mapping (sa_reads.gfa1.paf)
 ```bash
-racon -t 8 sra_data.fastq.gz ~/Topic_5/out/sa_reads.gfa1.paf ~/Topic_5/out/sa_unitigs.fasta > ~/Topic_5/out/sa_ont_assembly.fasta
+
+racon -t 8 sra_data.fastq.gz ~/Topic_5/out/sa_reads.gfa1.paf \
+~/Topic_5/out/sa_unitigs.fasta > ~/Topic_5/out/sa_ont_assembly.fasta
+
 ```
 
 Step 4. Assess the quality of your long read assembly from error prone reads using [Quast](http://cab.cc.spbu.ru/quast/) 
@@ -360,18 +373,22 @@ assembly                       Miniasm assembly to be polished (GFA format)
 
 Test if Minipolish improves the assembly:
 ```bash
+
 cd ~/Topic_5/data/nanopore/
 minipolish -t 8 sra_data.fastq.gz ~/Topic_5/out/sa_miniasm.gfa > ~/Topic_5/out/sa_polished.gfa
 awk '/^S/{print ">"$2"\n"$3}' ~/Topic_5/out/sa_polished.gfa > ~/Topic_5/out/sa_polished.fasta
+
 ```
 Upload the assembly (sa_polished.fasta) to Quast to examine the metics and examine the polished graph in Bandage (sa_polished.gfa)
 
 Finally, you can test if the filtering of the Nanopore data (Topic_3) will improve the assembly. Instead of running each step separately, you can run the entire Minimap2+Miniasm+Minipolish pipeline using a single wrapper (miniasm_and_minipolish.sh) found in ~/Topic_5/scripts.
 
 ```bash
+
 cd ~/Topic_5/scripts
 sh miniasm_and_minipolish.sh ~/Topic_3/out/sra_fil2.fastq 8 > ~/Topic_5/out/sa_filt_polished.gfa
 awk '/^S/{print ">"$2"\n"$3}' ~/Topic_5/out/sa_filt_polished.gfa > ~/Topic_5/out/sa_filt_polished.fasta
+
 ```
 Upload the assembly (sa_filt_polished.gfa) to Quast to examine the metics and examine the polished graph in Bandage (sa_filt_polished.gfa).
 
