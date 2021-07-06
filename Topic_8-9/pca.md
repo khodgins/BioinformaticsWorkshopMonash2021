@@ -139,6 +139,7 @@ Plotting challenge 1
 <details>
 <summary markdown="span">**Answer**
 </summary>
+    
 ```r
 
 tab <- data.frame(sample = pca$sample.id,
@@ -153,8 +154,7 @@ tab %>%
   ggplot(.,aes(x=PC3,y=PC4)) + 
   geom_point(aes(color=group))
   
-  ```
-
+```
 </details>
 
 
