@@ -1,7 +1,7 @@
 ---
 title: "Topic 6: RNAseq analysis exercise"
-permalink: /Topic_6/
-topickey: 6
+permalink: /Topic_7/
+topickey: 7
 topictitle: "RNASeq Analysis"
 ---
 
@@ -39,7 +39,7 @@ Step 1. Install Bowtie. NOTE THAT STEPS 1 AND 2 ARE COMPLETED
 sudo apt-get install bowtie2
 
 
-Step 2. Install RSEM (/home/biol525d/Topic_6/scripts/RSEM-1.2.31.tar.gz). COMPLETED
+Step 2. Install RSEM (~Topic_9/scripts/RSEM-1.2.31.tar.gz). COMPLETED
 
 First unpack.
 
