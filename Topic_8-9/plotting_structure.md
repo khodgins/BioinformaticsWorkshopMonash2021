@@ -1,11 +1,22 @@
 ---
-title: "Topic 9: Plotting Admixture results in R"
-topickey: 9
+title: "Topic 8: Plotting Admixture results in R"
+topickey: 8
 topictitle: "Plotting in R"
 datafiles: [1,2,3,4]
 ---
 
-We're working with Rstudio on our desktops, so download the "vcf" and "analysis" directories to your laptop. The rest of this tutorial should be run in your Rstudio IDE. 
+We're working with Rstudio on the VM using the GUI. 
+
+You can also download the analysis and vcf directories onto your computer and run it there if you have Rstudio installed using the scp command. In a terminal connected to your own computer (i.e., not connected to a server).
+
+```bash
+scp -r trainee1@sbs-01.erc.monash.edu:~/Topic_4/vcf ~/Desktop/
+
+scp -r trainee1@sbs-01.erc.monash.edu:~/Topic_4/analysis ~/Desktop/
+
+```
+
+The above commands will save the files to your Desktop but you can change the location on your computer where you want the files saved.
 
 NOTE: This tutorial is based on Rstudio 1.2.1335 and R 3.6.1, the latest version of both. Almost all steps should work identically on older versions, but there may be issues installing some packages. In this case, I recommend updating your version of R unless you have a specific reason not to. 
 
@@ -22,15 +33,11 @@ Click on "New Project".
 
 ![](rstudio_project_2.jpeg)
 
-Enter directory name "biol525d" and put it somewhere you can get to. In my case, I put it on the Desktop directory. Finally, click "Create Project".
+Enter directory name "workshop" and put it somewhere you can get to. In my case, I put it on the Desktop directory. Finally, click "Create Project".
 
-![](rstudio_project_3.jpeg)
-
-After it has been created, move your "analysis" and "vcf" directory into your biol525d project directory so you have easy access to those files. From earlier lectures we introduced "scp" this will be useful here for transfering your files off the server onto your local computer.
-
+After it has been created, move your "analysis" and "vcf" directory into your workshop project directory so you have easy access to those files. 
 
 You're now in your Rstudio Project and the next step is to install the tidyverse package, which includes a suite of tools for manipulating data and plotting. The examples today will be focused on tidyverse solutions to problems. One key feature of the tidyverse world is the use of "%>%" to pipe data between commands. This functions similar to "\|" in the commandline and helps put together strings of commands that are work together and are easy to understand. 
-
 
 
 ``` r
@@ -159,5 +166,24 @@ HINT:
   * Try the forcats package
   {: .spoiler}
   
+<details>
+<summary markdown="span">**Answer**
+</summary>
+
+```bash
+  install.packages("forcats")
+  library(forcats)
+  all_data %>%  mutate(sample = fct_reorder(sample, desc(sample))) %>%
+   ggplot(.,aes(x=sample,y=value,fill=factor(Q))) + 
+   geom_bar(stat="identity",position="stack") +
+   xlab("Sample") + ylab("Ancestry") +
+   theme_bw() +
+   theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+   scale_fill_brewer(palette="Set1",name="K",
+                     labels=seq(1:5)) +
+   facet_wrap(~k,ncol=1)
+```
+  
+</details>
 
 Now lets move onto [Principal Component Analysis](./pca.md)
