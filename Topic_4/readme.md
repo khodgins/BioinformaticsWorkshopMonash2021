@@ -139,11 +139,11 @@ HINTS:
   {: .spoiler}
 
 MORE HINTS:
-  * Can you make a file that contains a list of all the prefixes to the fastq files (this is the part of the name that will change from file to file e.g., ANN1133). You will need to use "ls" "grep" and "sed" and redirect (>>) the output to a file (e.g., named filelist.txt)
+  * Can you make a file that contains a list of all the prefixes to the fastq files (this is the part of the name that will change from file to file e.g., ANN1133). You will need to use "ls" "grep" and "sed" (find and replace function) and redirect (>>) the output to a file (e.g., named filelist.txt)
   * Now try and take that file with the list of prefixes (e.g., filelist.txt) and print the first lines of each fastq file to the screen
 {: .spoiler}
    ```bash
-        for file in fname `cat filelist.txt`
+        for fname in `cat filelist.txt`
 	do 
 	  head -n1 ~/Topic_4/fastq/$fname.R1.fastq 
 	done 
