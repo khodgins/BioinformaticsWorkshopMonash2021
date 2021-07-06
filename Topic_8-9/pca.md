@@ -181,3 +181,4 @@ library(ggrepel)
  ```
 </details>
 
+Question 1. What is the effect of missing data on a PCA?
