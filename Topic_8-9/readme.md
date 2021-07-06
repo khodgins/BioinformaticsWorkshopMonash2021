@@ -67,9 +67,9 @@ A common first pass analysis is to use structure to look at clustering in your d
 
 
 ```bash
-cd ~/
+cd ~/Topic_4
 mkdir analysis
-/mnt/bin/plink --make-bed \
+plink --make-bed \
 	--vcf vcf/full_genome.filtered.vcf.gz \
 	--out vcf/full_genome.filtered \
 	--set-missing-var-ids @:# \
@@ -81,7 +81,7 @@ This produces files with the suffix .nosex, .log, .fam, .bim, .bed. We can use t
 NOTE: When using admixture you should filter your VCF for linkage (i.e. remove highly linked sites). We're going to do this later during the PCA step, so for now we're using our whole set. If you can't filter for linkage, subsetting the site also helps (i.e. selecting every 10th site).
 
 ```bash 
-/mnt/bin/admixture vcf/full_genome.filtered.bed 2
+admixture vcf/full_genome.filtered.bed 2
 ```
 Uh oh that doesn't work, it produces this error message.
 ```bash
@@ -107,20 +107,21 @@ zcat vcf/full_genome.filtered.vcf.gz |\
 	sed s/^HanXRQChr//g |\
 	gzip > vcf/full_genome.filtered.numericChr.vcf.gz
 	
-/mnt/bin/plink --make-bed \
+plink --make-bed \
 	--vcf vcf/full_genome.filtered.numericChr.vcf.gz \
 	--out vcf/full_genome.filtered.numericChr \
 	--set-missing-var-ids @:# \
 	--double-id \
 	--allow-extra-chr
 
-/mnt/bin/admixture --cv vcf/full_genome.filtered.numericChr.bed 2
+admixture --cv vcf/full_genome.filtered.numericChr.bed 2
 ```
 This works! With only 10 samples and ~6500 SNPs it finished almost completely. We only ran it for one value of K (2) but we should also test different K values and select the best K value.
 ```bash 
-for K in 1 2 3 4 5; \
-do /mnt/bin/admixture --cv vcf/full_genome.filtered.numericChr.bed $K |\
-tee full_genome.filtered.numericChr.${K}.out; \
+for K in 1 2 3 4 5
+do 
+admixture --cv vcf/full_genome.filtered.numericChr.bed $K |\
+tee full_genome.filtered.numericChr.${K}.out 
 done
 #NOTE: "tee" takes the output of a command and saves it to a file, while 
 # also printing letting it print to the screen. So we can watch the progress while also 
@@ -154,7 +155,7 @@ ARG0016	0.999990 0.000010
 ARG0018	0.999990 0.000010
 ARG0028	0.999990 0.000010
 ```
-All the ANN samples are one group and all the ARG are a different group, which makes sense, since they are different species. We're going to plot these results, but before we leave the command line, lets also calculate Fst between the groups (or species in this case) using the perl tool vcf2fst.pl. This is a custom script from Greg Owens, since we want to keep the numerator and denominator from the Fst calculations, which is hard to do. (Lots of other programs calculate Fst - can you think of a reason why might it be important to keep track of both the denominator and numerator?)
+All the ANN samples are one group and all the ARG are a different group, which makes sense, since they are different species. 
 
 We need two files, a sample info file and a group file. The sample info file tells the program which population each sample is in and the group file tells the program which populations to compare. We can make them here:
 
@@ -165,16 +166,11 @@ done > sampleinfo.txt
 echo -e "ANN\t1\nARG\t2" > popinfo.txt
 ```
 
-This script was originally made to work with unphased data. That means that genotype calls are depicted by "0/1" or "1/1" values, rather than "0\|1" or "1\|1" (remember that newer snp calling methods use haplotype-based methods and thus can infer phase over small tracts). Because we checked and made sure that "\|" are only used in this vcf for phased genotype calls (you should quickly check with grep!), as a work around, we can replace all "\|" instances with "\". We can pipe the output of this modified file to calculate Fst for each site.
-
-```
-zcat vcf/full_genome.filtered.vcf.gz | sed 's/|/\//g' | perl /mnt/bin/vcf2fst.pl sampleinfo.txt popinfo.txt \
-> analysis/full_genome.filtered.fst.txt
 
 ```
 We're going to move from the command line to desktop Rstudio, but as a last step lets copy our samplelist file to the analysis directory so we can use it later.
 ```bash
-cp samplelist.txt analysis/
+cp ~/Topic_4/samplelist.txt ~/Topic_4/analysis/
 ```
 
 Forward to plotting on the [next page](./plotting_structure.md).
