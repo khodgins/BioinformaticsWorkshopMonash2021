@@ -158,6 +158,7 @@ We've now called variants for a single chromosome, but there are other chromosom
 <details>
 <summary markdown="span">**Answer**
 </summary>
+
 ```bash
 grep \> ref/HanXRQr1.0-20151230.1mb.fa | sed 's/>//g' > Chr.names
 for chr in `cat Chr.names | tail -n2`
@@ -177,7 +178,7 @@ gatk GenotypeGVCFs \
    -O vcf/$chr.vcf.gz
 done
 ```
-
+</details>
 
 Once you have three VCF files, one for each chromosome, you can concatenate them together to make a single VCF file. We're going to use _bcftools_ which is a very fast program for manipulating vcfs as well as bcfs (the binary version of a vcf).
 
@@ -190,7 +191,6 @@ bcftools concat \
   -O z > vcf/full_genome.vcf.gz
 
 ```
-</details>
   
 You've done it! We have a VCF. The later tutorials in this series use this vcf for downstream analysis. Unfortunately we do not have time to complete them this year during the workshop.
 
@@ -205,8 +205,8 @@ You've done it! We have a VCF. The later tutorials in this series use this vcf f
 3. What is strand bias and why would you filter based on it?
 
 Programs requirments
-[gatk](
-[picard](
-[samtools](
-[bcftools](
+[gatk]
+[picard]
+[samtools]
+[bcftools]
 
