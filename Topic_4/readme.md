@@ -199,7 +199,7 @@ After your final bam files are created, and you've checked that they look good, 
 ### By tomorrow, you should have created cleaned bam files for all samples so we can move on to variant calling.
 
 ## Discussion Questions
-1) Is an alignment with a higher percent of mapped reads always better than one with a lower percent? Why or why not?
-2) I want to reduce the percent of incorrectly mapped reads when using BWA. What setting or settings should I change in BWA?
-3) What are two ways that could be used to evaluate which aligner is best?
+1. Is an alignment with a higher percent of mapped reads always better than one with a lower percent? Why or why not?
+2. I want to reduce the percent of incorrectly mapped reads when using BWA. What setting or settings should I change in BWA?
+3. What are two ways that could be used to evaluate which aligner is best?
 
