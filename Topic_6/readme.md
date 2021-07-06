@@ -55,7 +55,9 @@ Now in the bam files duplicate reads are flagged. Take a look in the log directo
 
 To use GATK, we have to index our reference genome. An index is a way to allow rapid access to a very large file. For example, it can tell the program that the third chromosome starts at bit 100000, so when the program wants to access that chromosome it can jump directly there rather than scan the whole file. Some index files are human readable (like .fai files) while others are not.
 ```bash
-java -jar /usr/local/bin/picard.jar CreateSequenceDictionary R= ref/HanXRQr1.0-20151230.1mb.fa O= ref/HanXRQr1.0-20151230.1mb.dict
+java -jar /usr/local/bin/picard.jar CreateSequenceDictionary \
+R= ref/HanXRQr1.0-20151230.1mb.fa \
+O= ref/HanXRQr1.0-20151230.1mb.dict
 
 samtools faidx ref/HanXRQr1.0-20151230.1mb.fa
 ```
