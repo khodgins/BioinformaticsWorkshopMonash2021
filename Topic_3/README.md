@@ -34,7 +34,7 @@ To practice unix-based command line, run through some of the examples after the 
 # Topic 3: Preprocessing Sequence Data
 
 
-Short read data (Illumina paired end)
+## Short read data (Illumina paired end)
 
 You will assess and filter two short read datasets today. The first is a Genotype by Sequencing (GBS) dataset from a conifer which used an enzyme called PST1. The second is a whole genome sequence dataset from a bacteria (Staphylococcus aureus).
 
@@ -140,7 +140,7 @@ There is no best option for trimming/filtering. The choices you make should refl
 Question 2) Try a couple different filtering combinations for the GBS data  (see the [manual](http://prinseq.sourceforge.net/manual.html) for options) and examine the QC plots using Fastqc. Which options you would choose to implement if this was your data?
 
 
-WGS data
+## WGS data
 
 Now we are going to QC and filter some paired-end whole genome sequence data from a single bacterial sample downloaded from GAGE (Genome Assembly Gold-Standard Evaluations) [website](http://gage.cbcb.umd.edu/data/index.html). The paired end sequence files are ~/Topic_3/frag_1.fastq ~/Topic_3/frag_2.fastq.
 
