@@ -44,7 +44,7 @@ Before we get started, we should make a directory to contain all of your output 
 mkdir ~/Topic_3/out
 ```
 
-GBS dataset
+## GBS dataset
 
 We are going to use a program called Fastqc to assess the quality of our data. It will run via the GUI on your VM. Simply open the terminal and type:
 
@@ -165,7 +165,7 @@ Question 4) What improvements have been made? How much sequence data has been re
 
 
 
-Long read data
+## Long read data
 
 We going assess the quality of long reads (Nanopore) from Staphylococcus aureus genome. These long reads were taken from [NCBI](https://www.ncbi.nlm.nih.gov/sra/SRR10346110) and we will use them to assemble the bacterial genome in a couple days.
 
@@ -179,7 +179,7 @@ Question 5) What do you notice about these reads compared to the Illumina short 
 
 Now we are going to remove potential adapter contamination using [Porechop](https://github.com/rrwick/Porechop), a program designed to specifically removed adapters from Nanopore data. The adapter sequences for Nanopore, were not included in this Fastqc configuration and they might not be apparent in our QC plots.
 
-We are going to output an adapter filtered (sra_fil.fastq) fastq file in the out directory
+We are going to output an adapter filtered (sra_fil.fastq) fastq file in the out directory. Note, this takes about 5-10 min.
 
 ```bash
 cd  ~/Topic_3/out
