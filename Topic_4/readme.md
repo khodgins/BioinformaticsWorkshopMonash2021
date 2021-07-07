@@ -114,7 +114,7 @@ Before you continue be sure that you have reviewed the [loops](http://swcarpentr
 After you complete the loop lesson try this extension. Create a list of the files in the creature directory and save it to a file.
 ```bash
 cd ~/shell-lesson-data/creatures
-ls * >> file.txt
+ls * > file.txt
 cat file.txt
 ```
 Now create a for loop that will take the file list as input, print the file name and then the first 10 lines of the file to the screen.
