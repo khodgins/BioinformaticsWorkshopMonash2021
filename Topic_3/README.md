@@ -91,8 +91,7 @@ Trim off bases from either end with less than a quality score of 10 (-trim_qual_
 ```bash
 	
 cd  ~/Topic_3/out
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl \ 
--fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq \
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq \
 -fastq2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R2.fastq \
 -log gbslog1 -out_good GBS_filter1 -min_len 70 -trim_qual_left 10 -trim_qual_right 10 
 
@@ -153,8 +152,7 @@ Use Prinseq to the filter the data. Below is an example command but you should a
 
 ```bash
 cd  ~/Topic_3/out
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl \
--fastq ~/Topic_3/data/frag_1.fastq -fastq2 ~/Topic_3/data/frag_2.fastq \
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/frag_1.fastq -fastq2 ~/Topic_3/data/frag_2.fastq \
 -log wgslog1 -out_good WGS_filter1 -min_len 70 -trim_qual_left 10 -trim_qual_right 10  
 	
 ```
