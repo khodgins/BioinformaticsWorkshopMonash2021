@@ -154,7 +154,7 @@ All the ANN samples are one group and all the ARG are a different group, which m
 
 We need two files, a sample info file and a group file. The sample info file tells the program which population each sample is in and the group file tells the program which populations to compare. We can make them here:
 
-```
+```bash
 for i in `cat samplelist.txt`; 
 	do echo -e "$i\t${i/%????/}"; 
 done > sampleinfo.txt
@@ -162,10 +162,12 @@ echo -e "ANN\t1\nARG\t2" > popinfo.txt
 ```
 
 
-```
+
 We're going to move from the command line to desktop Rstudio, but as a last step lets copy our samplelist file to the analysis directory so we can use it later.
 ```bash
+
 cp ~/Topic_4/samplelist.txt ~/Topic_4/analysis/
+
 ```
 
 Forward to plotting on the [next page](./plotting_structure.md).
