@@ -71,8 +71,7 @@ These commands make a file containing information to produced the Prinseq QC plo
 ```bash
 
 cd  ~/Topic_3/out
-perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl \
--fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq \
+perl ~/Topic_3/scripts/prinseq-lite-0.20.4/prinseq-lite.pl -fastq ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R1.fastq \
 -fastq2 ~/Topic_3/data/GBS12_brds_Pi_197A2_100k_R2.fastq \
 -graph_data ~/Topic_3/out/GBS12_brds_Pi_197A2_100k_graph.txt 
 
