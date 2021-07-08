@@ -27,6 +27,9 @@ Participation in discussions and lab exercises.
 ## Lectures/seminars
 July 12, 13, 15th 2021
 
+## Location/time
+Computer Lab (Room 146, Building 17)
+
 There are two sessions a day, from 11am to 1pm and from 1:30pm to 3:30pm.
 
 ## Basic course structure
