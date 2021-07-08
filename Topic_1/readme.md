@@ -18,7 +18,7 @@ How to login to training VM
 
 From within Monash network access this URL:
 
-https://sbs-broker.erc.monash.edu/
+[https://sbs-broker.erc.monash.edu/](https://sbs-broker.erc.monash.edu/)
 
 Note that off campus you can login via a [vnp](https://www.monash.edu/esolutions/network/vpn)
 
