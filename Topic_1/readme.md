@@ -6,7 +6,7 @@ topictitle: Servers
 ---
 
 ### Lecture slides
-* [Slides](./Topic 1.pdf)
+* [Slides](./Topic_1.pdf)
 
 ### Background reading
 * [RADseq Andrews](./Andrews_et_al.pdf)
