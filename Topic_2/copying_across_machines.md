@@ -15,10 +15,15 @@ With the terminal (linux/mac/mobaxterm):
 
 **To copy a small set of files you can use the `scp` command.**
 
-   > *Note:* If your `~/.ssh/config` has an alias for serveruser@serverhost, called b525, substitute "serveruser@serverhost" with just "b525" below
-
+   
    Examples:
-
+       
+       #copy file.txt from your home directory on your computer to the home directory on the trainee1 VM 
+       scp ~/my_file.txt trainee1@sbs-01.erc.monash.edu:~/
+       
+       #copy my_file.txt in the home directory on the trainee1 VM to your computer's home directory
+       scp trainee1@sbs-01.erc.monash.edu:~/my_file.txt ~/
+       
        # creates a copy of three files in ~/path/on/server/
 	   # the destination directory must exist
        scp ~/mydir/file1 ./file2 /path/to/file3 serveruser@serverhost:path/on/server/
@@ -29,11 +34,15 @@ With the terminal (linux/mac/mobaxterm):
        # the server path is relative to the home directory, but an absolute path can be
 	   # provided
 	   scp myfile.txt serveruser@serverhost:/scratch/myuser/
+	   # example
 
+		   
        # for Moba, your C:\ drive is in /mnt/c/.
 	   # moba also creates a folder called MyDocuments inside your moba home
 	   # which points to your windows documents folder.
 	   scp ~/MyDocuments/my_file.txt serveruser@serverhost:path/on/server/
+	   
+
 
 You can reverse the arguments to copy files from the server to your laptop. The last argument is always the destination.
 
