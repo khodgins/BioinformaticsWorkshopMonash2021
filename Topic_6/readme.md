@@ -196,7 +196,7 @@ You've done it! We have a VCF. The later tutorials in this series use this vcf f
 
 ### Coding challenge
 * Use command line tools to extract a list of all the samples in your VCF file, from the vcf file itself. There should be one name per line.
-* Take the original vcf file produced and create a vcf of only high biallelic SNPs for ANN samples. 
+* Take the original vcf file produced and create a vcf of only high quality biallelic SNPs for ANN samples. 
 * Use bcftools to filter your vcf file and select for sites with alternate allele frequencies > 0.01, including multi-allelic sites. 
 
 ### Daily Questions
