@@ -49,7 +49,7 @@ bwa mem \
   fastq/ANN1133.R1.fastq \
   fastq/ANN1133.R2.fastq \
   -t 2 \
-  -R '@RG\tID:ANN1133\tSM:ANN1133\tPL:illumina\tPU:biol525d\tLB:ANN1133_lib' \
+  -R '@RG\tID:ANN1133\tSM:ANN1133\tPL:illumina\tPU:SBS\tLB:ANN1133_lib' \
   > bam/ANN1133.sam
   
 ```
