@@ -19,8 +19,11 @@ The first step is to set up a directory structure so the resulting files will be
 #Navigate to the Topic_4 folder in your home working directory
 cd ~/Topic_4
 
-#Copy the reference directory to your working directory
-cp -r /mnt/workshop/data/ref ./
+#make a red directory for your sunflower genome reference
+mkdir ref
+
+#Copy the reference directory to the ref directory
+cp /mnt/workshop/data/ref/HanXRQr1.0-20151230.1mb.fa  ref/
 
 #Copy the fastq files to this directory
 cp -r /mnt/workshop/data/fastq ./
