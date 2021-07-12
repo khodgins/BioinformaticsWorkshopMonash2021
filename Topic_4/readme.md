@@ -7,7 +7,7 @@ topictitle: "Sequence Alignment"
 
 ### Accompanying material
 
-* [Slides](./Topic 4.pdf)
+* [Slides](./Topic_4.pdf)
 
 
 Today we're going to align sequence data to the sunflower reference genome useing BWA and explore what a BAM file is.
