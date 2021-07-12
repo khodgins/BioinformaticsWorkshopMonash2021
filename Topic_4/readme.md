@@ -170,6 +170,7 @@ MORE HINTS:
 <summary markdown="span">**Answer**
 </summary>
 ```bash
+
   #First set up variable names
   bam=~/Topic_4/bam
   fastq=~/Topic_4/fastq
