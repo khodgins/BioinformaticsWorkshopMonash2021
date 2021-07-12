@@ -66,7 +66,7 @@ There are a number of different quality metrics for you to assess using Fastqc. 
 
 You can also look at the quality metrics using the program that you will use to trim and filter the data (Prinseq). Many of the metrics are similar but Prinseq supplies a few different plots that you might find helpful.
 
-These commands make a file containing information to produced the Prinseq QC plots in the folder ~/Topic_3/out (note that the "\" allows use to continue the command on the next line to make it more readable. You can remove the slashes but you must then place the code all on the same line.)
+These commands make a file containing information to produced the Prinseq QC plots in the folder ~/Topic_3/out (note that the "\\" allows use to continue the command on the next line to make it more readable. You can remove the slashes but you must then place the code all on the same line.)
 
 ```bash
 
