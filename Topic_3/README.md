@@ -81,7 +81,7 @@ Upload the graph file (GBS12_brds_Pi_197A2_100k_graph.txt) to [here](http://edwa
 
 Find a description of the various plot types [here](http://prinseq.sourceforge.net/manual.html#STANDALONE)
 
-Question 1) Examine the QC results files for GBS12_brds_Pi_197A2_100k_R1.fastq and GBS12_brds_Pi_197A2_100k_R1.fastq. Are there any issues with the data? Think carefully about the data and assess if these patterns represent issues with the data that need to be rectified through filtering (hint: GBS reads will start with the same restriction site, which is part of the genomic DNA)? If so, what filters would you apply?
+Question 1) Examine the QC results files for GBS12_brds_Pi_197A2_100k_R1.fastq and GBS12_brds_Pi_197A2_100k_R2.fastq. Are there any issues with the data? Think carefully about the data and assess if these patterns represent issues with the data that need to be rectified through filtering (hint: GBS reads will start with the same restriction site, which is part of the genomic DNA)? If so, what filters would you apply?
 
 
 2. Within Prinseq (and most other programs), "trimming" will not affect the number of reads you have, but will alter the characteristics of the sequences, while "filtering" will remove reads that do not pass the criteria. This can result in un-paired reads in the two _1 and _2 files, but some programs (including Prinseq) take care of this by outputting separate files for the good (i.e. paired) reads and the unpaired (i.e. singletons) where one read has been filtered. 
