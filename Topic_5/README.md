@@ -11,7 +11,7 @@ topictitle: "Assembly"
 
 ## Accompanying material
 
-Slides: [De novo Assembly](./Assembly2021.pdf)
+Slides: [De novo Assembly](./Topic_5.pdf)
 
 Background reading: 
 * Comparison of the two major classes of assembly algorithms: overlap-layout-consensus and de-bruijn-graph [Paper](./background_reading/Briefings in Functional Genomics-2011-Li-bfgp-elr035.pdf). Briefings in Functional Genetics 2011.
@@ -154,9 +154,9 @@ velvetg sa_assembly21
 
 Run the above command.
 
-Now contigs.fa appears in your output directory (sa_assembly21). This file contains your assembled genome. A log file, with information on your input parameters as well as some basic metrics of your assembly, and a stats.txt file with information on each node is present also appear. Note that node lengths are given in k-mers units (see below). 
+Now contigs.fa appears in your output directory (sa_assembly21). This file contains your assembled genome. A log file, with information on your input parameters as well as some basic metrics of your assembly, and a stats.txt file with information on each node. Note that node lengths are given in k-mers units (see below). 
 
-Step 4. Assess the assembly quality (Note that because the long read assembly takes a long time (below), consider starting the long read assembly before you assess your short read assemblies using Quast)
+Step 4. Assess the assembly quality (Note that because the long read assembly takes a long time (below), consider starting the long read assembly before you assess your short read assemblies using Quast -i.e., go and run Step 1 of the long read assembly section and come back and do Step 4)
 
 There are several basic metrics to quantify the quality of a genome assembly. N50 is a common statistic similar to a mean or median contig length, but has greater weight given to the longer contigs. It is defined as the contig length at which half the bases in the genome are in contigs that size or larger. Other metrics include the longest contig size, the total size of the assembly and total contig number. 
 
@@ -215,7 +215,7 @@ mv <old file name> <new file name>
 
 ### Back to the tutorial
 
-If you want to modify the k-mer you must run velveth again and replace 21 with a new number. Velvet only allows k-mers up to 31 bp in length. 
+If you want to modify the k-mer you must run velveth again and replace 21 with a new number. Velvet only allows k-mers up to 31 bp in length. I have run velveth using 31 bp kmers as well.
 
 Question 4) Typically, the longer the k-mer, the better the assembly, until you hit the point of too little coverage. Why might this be?
 
