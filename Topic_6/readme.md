@@ -6,7 +6,7 @@ topictitle: "SNP Calling"
 ---
 
 ## Accompanying material
-* [Slides](./Topic_6.pdf)
+* [Slides](./Topic6_PB2.pdf)
 
 In this tutorial we're going to call SNPs with GATK using the alignments that you made in Topic 4. We will continue our alignment and SNP calling in this directory (Topic_4)
 
