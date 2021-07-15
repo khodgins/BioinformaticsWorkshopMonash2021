@@ -160,7 +160,7 @@ Step 4. Assess the assembly quality (Note that because the long read assembly ta
 
 There are several basic metrics to quantify the quality of a genome assembly. N50 is a common statistic similar to a mean or median contig length, but has greater weight given to the longer contigs. It is defined as the contig length at which half the bases in the genome are in contigs that size or larger. Other metrics include the longest contig size, the total size of the assembly and total contig number. 
 
-To assess the assembly quality use the web-based version of [Quast](http://cab.cc.spbu.ru/quast/). Simply drop you genome assembly into the box and click evaluate. 
+To assess the assembly quality use the web-based version of [Quast](http://quast.sourceforge.net/quast). Simply drop you genome assembly into the box and click evaluate. 
 
 Question 2) Can you think of other ways to assess assembly quality? What might be the trouble with only focusing on maximizing N50 or N90? 
 
