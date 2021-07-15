@@ -162,6 +162,14 @@ There are several basic metrics to quantify the quality of a genome assembly. N5
 
 To assess the assembly quality use the web-based version of [Quast](http://quast.sourceforge.net/quast). Simply drop you genome assembly into the box and click evaluate. 
 
+Alternatively run the python script on your genome assembly. For example
+```bash
+cd ~/Topic_5/out/sa_assembly21/
+quast.py contigs.fa
+```
+Then open up your html file that is produced in the "quast_results" folder
+
+
 Question 2) Can you think of other ways to assess assembly quality? What might be the trouble with only focusing on maximizing N50 or N90? 
 
 Question 3) Quantify the assembly metrics for your first assembly that you ran without any options. Pick a couple sets of parameters to run (be sure to try exp_cov auto). Compare the resulting assemblies with one another and discuss which ones seemed to have improved the assembly and why that might be. Be prepared to share your findings with the class. 
